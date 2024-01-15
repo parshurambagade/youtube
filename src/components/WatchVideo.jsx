@@ -7,15 +7,15 @@ const WatchVideo = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(hideMenu);
-    }, [])
-    
+        dispatch(hideMenu());
+    }, []);
+
     const [searchParams, setSearchParams] = useSearchParams();
     const videoId = searchParams.get("v");
     console.log(videoId);
   return (
     <div>
-        <iframe width="1200" height="650" src={"https://www.youtube.com/embed/" + videoId} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+        <iframe width="1100" height="600" src={"https://www.youtube.com/embed/" + videoId} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
     </div>
   )
 }
