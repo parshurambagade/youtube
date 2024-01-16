@@ -9,7 +9,7 @@ const Sidebar = () => {
   
 
   return !showMenu ? "" : (
-    <div className="w-[15%] h-[100vh] flex flex-col gap-4 p-4 shadow-lg border border-slate-200">
+    <div className="w-[15%]  bg-white flex flex-col gap-4 p-4 shadow-lg border border-slate-200 ">
 
         <div className="border-b pb-4 flex flex-col gap-4">
         <div className="flex gap-2 items-center">
