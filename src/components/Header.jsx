@@ -73,7 +73,8 @@ const Header = () => {
           {showSuggestions && <div className="w-[30rem] relative shadow-xl ">
             <ul className={!searchSuggestions.length ? "border-none bg-transparent" : "w-[29.5rem] px-4 py-2 absolute border border-gray-200 -left-5 bg-white rounded-xl"}>
               {searchSuggestions && searchSuggestions.map((suggestion, i) => {
-                return (<li key={i} className="border-b border-gray-100 py-1 text-base flex  items-center  gap-4"><FiSearch /> {suggestion}</li>)
+                return (<li key={i} className="border-b cursor-pointer border-gray-100 py-1 text-base flex  items-center  gap-4"
+                  ><FiSearch /> {suggestion}</li>)
               })}
             </ul>
           </div>}

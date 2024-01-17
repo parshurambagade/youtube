@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import VideoCard from './VideoCard';
 import { YOUTUBE_VIDEOS_API } from '../utils/constants';
 import { Link } from 'react-router-dom';
-import CommentsContainer from './CommentsContainer';
 
 const VideosContainer = () => {
 
