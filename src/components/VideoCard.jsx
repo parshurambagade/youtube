@@ -8,8 +8,8 @@ const VideoCard = ({ video }) => {
         <img src={thumbnails?.medium?.url} className="rounded-t-lg" alt="" />
         <div className="flex gap-1  flex-col mt-1 w-full p-2">
             <img src="" alt="" />
-            <div>
-            <h3 className="font-bold">{title}</h3>
+            <div className="text-gray-500 flex flex-col gap-1">
+            <h3 className="font-medium text-black">{title}</h3>
             <p>{channelTitle}</p>
             <p>{viewCount} views</p>
             </div>

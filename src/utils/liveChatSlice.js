@@ -4,7 +4,7 @@ const liveChatSlice = createSlice({
     name: "liveChat",
     initialState: [],
     reducers: {
-        addChat: (state, action) => { 
+        addChat:(state, action) => { 
             state.length > 10 && state.shift();
             state.push({name:action.payload.name, text:action.payload.text})
         }

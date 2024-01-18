@@ -31,3 +31,29 @@ export const randomLiveChat = () => {
   return `${randomGreeting}! ${randomMessage}`;
 };
 
+
+export const formatIsoTimestamp = (isoTimestamp) => {
+  // Create a new Date object from the provided ISO timestamp string
+  const date = new Date(isoTimestamp);
+
+  // Define formatting options for the resulting date
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'Asia/Kolkata', // Set the time zone to India (Asia/Kolkata)
+  };
+
+  // Convert the date to a formatted string using the specified options
+  const formattedDate = date.toLocaleString(undefined, options);
+
+  // Return the formatted date string
+  return formattedDate;
+};
+
+// Test the function
+// const isoTimestamp = '2024-01-18T17:01:56.003Z';
+// const formattedDate = formatIsoTimestamp(isoTimestamp);
+
+// Log the result
+// console.log(`Formatted Date in Indian Time: ${formattedDate}`);

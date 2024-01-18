@@ -5,6 +5,8 @@ import { toggleMenu } from "../utils/menuSlice";
 import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_AUTOCOMPLETE_API } from "../utils/constants";
 import { cacheSuggestions } from "../utils/searchSlice";
+import { IoClose } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   
@@ -14,6 +16,7 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const cachedSuggestions = useSelector((state) => state.search);
+  const navigate = useNavigate();
 
   // console.log(cachedSuggestions);
 
@@ -34,6 +37,8 @@ const Header = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[searchText])
   
+
+  
   const fetchSearchSuggestions = async () => {
     const data = await fetch(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText);
     const json = await data.json();
@@ -48,12 +53,19 @@ const Header = () => {
     dispatch(toggleMenu());
   }
 
-  const searchHandleChange = (e) => {
-    
+  const searchHandleChange = (e) => {   
     setSearchText(e.target.value);
-    // console.log(searchText);
   }
 
+  const handleSuggestionClick = (selectedSuggestion) => {
+    setSearchText(selectedSuggestion);
+    setShowSuggestions(false)
+    handleFormSubmit();
+  };
+
+  const handleFormSubmit = () => {
+    navigate("/results");
+  }
 
   return (
     <div className="w-full  bg-white flex shadow-lg lg:px-8 lg:py-4 lg:justify-between text-2xl" >
@@ -64,17 +76,17 @@ const Header = () => {
               <span className="text-3xl text-red-500"><FaYoutube /></span>YouTube</span>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
-          <div className="flex w-[60rem] justify-center">
-            <input type="text" name="search" autoComplete="off" placeholder="Search" className="border text-lg px-4 py-1 rounded-l-full border-slate-300 w-1/2" onChange={searchHandleChange} value={searchText} onFocus={() => setShowSuggestions(true)} onBlur={() => setShowSuggestions(false)}/>
+        <div className="flex flex-col justify-center items-center"   >
+          <form className="flex w-[60rem] justify-center" onSubmit={handleFormSubmit}>   
+            <input type="text" name="search" autoComplete="off" placeholder="Search" className="border text-lg px-4 py-1 rounded-l-full border-slate-300 border-r-0 w-1/2 focus:outline-none " onChange={searchHandleChange} value={searchText} onFocus={() => setShowSuggestions(true)}/>
+            {searchText && <span className="border border-l-0 px-2 flex items-center text-lg py-1 cursor-pointer text-gray-700 " onClick={() => setSearchText("")}><IoClose /></span>}
             <button className="flex justify-center items-center border bg-gray-200 border-slate-300 rounded-r-full px-4 text-lg"><FiSearch /></button>
-          </div>
+          </form>
           
-          {showSuggestions && <div className="w-[30rem] relative shadow-xl ">
-            <ul className={!searchSuggestions.length ? "border-none bg-transparent" : "w-[29.5rem] px-4 py-2 absolute border border-gray-200 -left-5 bg-white rounded-xl"}>
+          {showSuggestions && <div className="w-[32rem] relative shadow-xl ">
+            <ul className={!searchSuggestions.length ? "border-none bg-transparent" : "w-full px-4 py-2 absolute border border-gray-200 -left-5 bg-white rounded-xl"}>
               {searchSuggestions && searchSuggestions.map((suggestion, i) => {
-                return (<li key={i} className="border-b cursor-pointer border-gray-100 py-1 text-base flex  items-center  gap-4"
-                  ><FiSearch /> {suggestion}</li>)
+                return (<li onClick={() => handleSuggestionClick(suggestion)} key={i} className="border-b cursor-pointer border-gray-100 py-1 text-base flex  items-center  gap-4"><FiSearch /> {suggestion}</li>)
               })}
             </ul>
           </div>}

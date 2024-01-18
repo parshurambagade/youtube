@@ -16,7 +16,7 @@ const WatchVideo = () => {
   const videoId = searchParams.get("v");
   console.log(videoId);
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full my-8">
       <div className="flex w-full">
         <div>
           <iframe
@@ -30,7 +30,7 @@ const WatchVideo = () => {
           ></iframe>
         </div>
 
-        <div className="w-full">
+        <div className="w-full ">
           <LiveChatContainer />
         </div>
       </div>
