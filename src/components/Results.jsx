@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FETCH_VIDEOS_BY_KEYWORD } from "../utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
-import { formatIsoTimestamp } from "../utils/helpers";
+import { formatTimeAgo } from "../utils/helpers";
 
 const Results = () => {
   const [results, setResults] = useState([]);
@@ -38,7 +38,7 @@ const VideoCard = ({ video }) => {
   const { title, description, publishTime, channelTitle, thumbnails } =
     video.snippet;
 
-  const localPublishDate = formatIsoTimestamp(publishTime);
+  const timeAgo = formatTimeAgo(publishTime);
 
   return (
     <div className="flex my-2 w-3/4 border border-slate-100 shadow-md rounded-lg">
@@ -49,7 +49,7 @@ const VideoCard = ({ video }) => {
       />
       <div className="flex flex-col gap-2 py-2 px-4 w-[60%] text-gray-500">
         <h4 className="font-medium text-lg text-black">{title}</h4>
-        <span>{localPublishDate} </span>
+        <span>{timeAgo} </span>
         <span>{channelTitle}</span>
         <span>{description}</span>
       </div>

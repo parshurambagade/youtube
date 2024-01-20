@@ -1,15 +1,37 @@
-
-const Comment = ({comment}) => {
-    const {name, text} = comment;
+import profilePic from "../assets/R.png";
+import { formatCount, formatTimeAgo } from "../utils/helpers";
+import { BiDislike, BiLike } from "react-icons/bi";
+const Comment = ({ comment }) => {
+  const {
+    authorDisplayName,
+    authorProfileImageUrl,
+    authorChannelUrl,
+    textOriginal,
+    updatedAt,
+    likeCount,
+  } = comment.snippet.topLevelComment.snippet;
+  const replies = comment?.replies?.comments;
   return (
-    <div className="flex gap-3 bg-gray-100 p-2 my-2">
-        <img src="https://th.bing.com/th/id/R.01da0902c89677030d1b4653bd4a1351?rik=NuG6S0lHm51WxQ&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-Free-Image.png&ehk=0ER186lOvX51zPC0dwi85VKFnvFXEjj%2fvWxVS0bOqbk%3d&risl=&pid=ImgRaw&r=0" alt="img" className="w-12 rounded-full border border-black"/>
-        <div>
-        <h4 className="font-bold text-lg">{name}</h4>
-        <p>{text}</p>
+    <div className="flex gap-4  p-2 items-start my-2">
+      <img
+        src={authorProfileImageUrl}
+        alt="img"
+        className="w-10 h-10    rounded-full border border-black"
+      />
+      <div className="">
+        <div className="flex gap-2">
+          <h4 className="font-bold text-lg">{authorDisplayName}</h4>
+          <p className="text-gray-700">{formatTimeAgo(updatedAt)}</p>
         </div>
+        <p>{textOriginal}</p>
+        <div className="flex py-2 rounded-full  text-xl items-center">
+                  <span className=" flex items-center gap-1 "><BiLike />{formatCount(likeCount)}</span>
+                  <span className="mx-1 px-3"><BiDislike /></span>
+                </div>
+      </div>
+      
     </div>
-  )
-}
+  );
+};
 
-export default Comment
+export default Comment;
