@@ -18,6 +18,7 @@ const LiveChatContainer = () => {
             dispatch(addChat({
                 name:generateName(),
                 text:randomLiveChat(),
+                profilePic: generateRandomImage()
             }));
         }, 1500);
 
@@ -35,6 +36,7 @@ const LiveChatContainer = () => {
         dispatch(addChat({
             name:"Default User",
             text:liveUsersChat,
+            profilePic: profile
         }))
         setLiveUsersChat("");
     }
@@ -42,11 +44,11 @@ const LiveChatContainer = () => {
     <div className="w-[20vw] border border-gray-600 rounded-lg h-[600px] mx-6 p-2  ">
         <h2 className="my-1 h-[5%] font-medium ">Live chat:</h2>
         <div className="h-[85%] overflow-y-scroll border-t" ref={liveChatContainerRef}>
-            {liveChat.map((chat, i) => (<LiveChat key={i} name={chat.name} text={chat.text} />))}  
+            {liveChat.map((chat, i) => (<LiveChat key={i} name={chat.name} text={chat.text} profilePic={chat.profilePic}/>))}  
         </div>
         <form className=" h-[10%] bg-white border-t flex gap-2 items-center w-full" onSubmit={handleSubmit} >
             <input type="text" name="liveChat" className="border text-sm border-gray-400 px-2 py-1 w-[85%] rounded-xl" value={liveUsersChat} onChange={(e) => setLiveUsersChat(e.target.value)} placeholder="chat as a default user" autoComplete="off" />
-            <button type="submit"  className="border text-sm  border-blue-500 bg-blue-300 text-gray-800 px-2 py-1 rounded-xl">Send</button>
+            <button type="submit"  className="border text-sm   bg-gray-300 border-gray-700 text-black px-2 py-1 rounded-xl">Send</button>
         </form>
     </div>
   )

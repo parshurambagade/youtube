@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+    .buttonsContainer::-webkit-scrollbar {
+        width: 12px; /* Set the width of the scrollbar */
+      }
+      
+      .buttonsContainer::-webkit-scrollbar-thumb {
+        background-color: #888; /* Set the color of the scrollbar thumb */
+        border-radius: 6px; /* Set the border radius of the scrollbar thumb */
+      }
+      
+      .buttonsContainer::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Set the color of the scrollbar track */
+      }

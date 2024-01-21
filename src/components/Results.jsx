@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FETCH_VIDEOS_BY_KEYWORD } from "../utils/constants";
 import { Link, useSearchParams } from "react-router-dom";
 import { formatTimeAgo } from "../utils/helpers";
+import ButtonsContainer from './ButtonsContainer';
 
 const Results = () => {
   const [results, setResults] = useState([]);
@@ -12,7 +13,7 @@ const Results = () => {
 
   useEffect(() => {
     getVideos();
-  }, []);
+  }, [q]);
 
   const getVideos = async () => {
     const data = await fetch(FETCH_VIDEOS_BY_KEYWORD + q);
@@ -21,7 +22,9 @@ const Results = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center my-12">
+    <div className="w-full flex flex-col items-center my-16">
+      <ButtonsContainer />
+      
       {results?.length &&  
         results.map((video) => (
           <Link to={'/watch?v=' + video.id.videoId} key={video.id.videoId} className="w-full flex justify-center">
@@ -48,7 +51,7 @@ const VideoCard = ({ video }) => {
         className="rounded-lg w-[40%]"
       />
       <div className="flex flex-col gap-2 py-2 px-4 w-[60%] text-gray-500">
-        <h4 className="font-medium text-lg text-black">{title}</h4>
+        <h4 className="font-normal text-[1.25rem] text-black">{title}</h4>
         <span>{timeAgo} </span>
         <span>{channelTitle}</span>
         <span>{description}</span>

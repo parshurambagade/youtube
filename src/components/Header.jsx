@@ -68,7 +68,7 @@ const Header = () => {
   }
 
   return (
-    <div className="w-full  bg-white flex shadow-lg lg:px-8 lg:py-4 lg:justify-between text-2xl" >
+    <div className="w-full fixed bg-white flex lg:px-8 lg:py-3 lg:justify-between text-2xl" >
 
         <div className="flex w-max items-center gap-5">
             <span onClick={() => toggleMenuClicked()} className="cursor-pointer"><FiMenu /></span>
@@ -79,7 +79,7 @@ const Header = () => {
         <div className="flex flex-col justify-center items-center"   >
           <form className="flex w-[60rem] justify-center" onSubmit={handleFormSubmit}>   
             <input type="text" name="search" autoComplete="off" placeholder="Search" className="border text-lg px-4 py-1 rounded-l-full border-slate-300 border-r-0 w-1/2 focus:outline-none " onChange={searchHandleChange} value={searchText} onFocus={() => setShowSuggestions(true)}/>
-            {searchText && <span className="border border-l-0 px-2 flex items-center text-lg py-1 cursor-pointer text-gray-700 " onClick={() => setSearchText("")}><IoClose /></span>}
+            {searchText && <span className="border border-l-0 px-2 flex items-center text-lg py-1 cursor-pointer text-gray-700 " ><IoClose /></span>}
             <button className="flex justify-center items-center border bg-gray-200 border-slate-300 rounded-r-full px-4 text-lg"><FiSearch /></button>
           </form>
           

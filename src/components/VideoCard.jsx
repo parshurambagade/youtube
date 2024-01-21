@@ -1,8 +1,8 @@
-import { formatCount } from "../utils/helpers";
+import { formatCount, formatTimeAgo } from "../utils/helpers";
 
 const VideoCard = ({ video }) => {
 
-    const {title, channelTitle, thumbnails} = video.snippet;
+    const {title, channelTitle, thumbnails,publishedAt} = video.snippet;
     const {viewCount} = video.statistics;
     // console.log(typeof(viewCount))
   return (
@@ -13,7 +13,10 @@ const VideoCard = ({ video }) => {
             <div className="text-gray-500 flex flex-col gap-1">
             <h3 className="font-medium text-black">{title}</h3>
             <p>{channelTitle}</p>
+            <span className="flex gap-2">
             <p>{formatCount(viewCount)} views</p>
+            <p className="border-l px-2">{formatTimeAgo(publishedAt)}</p>
+            </span>
             </div>
         </div>
     </div>
