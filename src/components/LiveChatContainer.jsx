@@ -41,7 +41,7 @@ const LiveChatContainer = () => {
         setLiveUsersChat("");
     }
   return (
-    <div className="w-[20vw] border border-gray-600 rounded-lg h-[600px] mx-6 p-2  ">
+    <div className="w-[20vw] border border-gray-200 rounded-lg shadow-md h-[600px] mx-6 p-2  ">
         <h2 className="my-1 h-[5%] font-medium ">Live chat:</h2>
         <div className="h-[85%] overflow-y-scroll border-t" ref={liveChatContainerRef}>
             {liveChat.map((chat, i) => (<LiveChat key={i} name={chat.name} text={chat.text} profilePic={chat.profilePic}/>))}  

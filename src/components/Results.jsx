@@ -22,8 +22,7 @@ const Results = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center my-16">
-      <ButtonsContainer />
+    <div className="w-full my-16">
       
       {results?.length &&  
         results.map((video) => (
