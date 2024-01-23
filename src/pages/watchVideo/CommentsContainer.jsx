@@ -1,4 +1,4 @@
-import { FETCH_VIDEO_COMMENTS } from "../utils/constants";
+import { FETCH_VIDEO_COMMENTS } from "../../data/constants";
 import { useEffect, useState } from "react";
 import Comment from './Comment';
 

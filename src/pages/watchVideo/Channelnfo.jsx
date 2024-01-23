@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { FETCH_CHANNEL_DETAILS } from '../utils/constants';
-import { formatCount } from '../utils/helpers';
+import { FETCH_CHANNEL_DETAILS } from '../../data/constants';
+import { formatCount } from '../../utils/helpers';
 
 const Channelnfo = ({channelId}) => {
 
@@ -16,14 +16,14 @@ const Channelnfo = ({channelId}) => {
         setChannelInfo(json.items[0]);
     }
   return (channelInfo &&
-    <div className="flex gap-4 items-center">
+    <div className="flex gap-2 lg:gap-4 items-center">
     <img src={channelInfo?.snippet?.thumbnails?.medium?.url} className="rounded-full w-10 h-10"/>
-    <div className="flex flex-col gap-0 leading-none">
-      <span className="text-lg font-semibold">
+    <div className="flex gap-2  lg:flex-col lg:gap-0 leading-none">
+      <span className=" text-base lg:text-lg font-semibold">
         {channelInfo?.snippet?.title} 
       </span>
-      <span className="text-gray-600 text-sm">
-        {formatCount(channelInfo?.statistics?.subscriberCount)} subscribers
+      <span className="text-gray-600 flex items-center text-xs lg:text-sm">
+        {formatCount(channelInfo?.statistics?.subscriberCount)} <span className='hidden md:flex'>subscribers</span>
       </span>
     </div>
     </div> 

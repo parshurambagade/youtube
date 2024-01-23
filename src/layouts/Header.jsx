@@ -1,10 +1,10 @@
 import { FiMenu, FiSearch } from "react-icons/fi";
 import { FaBell, FaUserCircle, FaYoutube} from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../utils/menuSlice";
+import { toggleMenu } from "../redux/menuSlice";
 import { useEffect, useState } from "react";
-import { YOUTUBE_SEARCH_AUTOCOMPLETE_API } from "../utils/constants";
-import { cacheSuggestions } from "../utils/searchSlice";
+import { YOUTUBE_SEARCH_AUTOCOMPLETE_API } from "../data/constants";
+import { cacheSuggestions } from "../redux/searchSlice";
 import { IoClose } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
@@ -40,6 +40,7 @@ const Header = () => {
 
   
   const fetchSearchSuggestions = async () => {
+
     const data = await fetch(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText);
     const json = await data.json();
     setSearchSuggestions(json[1]);

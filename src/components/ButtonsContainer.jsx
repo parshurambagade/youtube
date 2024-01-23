@@ -29,9 +29,9 @@ const ButtonsContainer = () => {
 
   return (
     
-    <div className={`buttonsContainer  mb-4 flex gap-8 py-2  justify-normal  w-full overflow-x-auto`}>
+    <div className={`buttonsContainer  mb-1 md:mb-4 flex gap-2 lg:gap-8 py-2  justify-normal  w-full overflow-x-scroll`}>
       {categoryList.map((category,i) => (
-        <div key={i} className="p-2 h-max flex items-center border w-max py-1 bg-slate-100 rounded-lg cursor-pointer text-nowrap hover:bg-slate-200" onClick={() => handleButtonClick(category.id)}>{category.name}</div>
+        <div key={i} className="text-xs md:text-sm p-2 h-max flex items-center border w-max py-1 bg-slate-100 rounded-lg cursor-pointer text-nowrap hover:bg-slate-200" onClick={() => handleButtonClick(category.id)}>{category.name}</div>
       ))}  
     </div>
   )

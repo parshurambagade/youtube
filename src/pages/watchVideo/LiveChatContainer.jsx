@@ -1,9 +1,9 @@
 import LiveChat from "./LiveChat"
-import profile from "../assets/R.png";
+import profile from "../../assets/R.png";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addChat } from "../utils/liveChatSlice";
-import { generateName, randomLiveChat, generateRandomImage } from "../utils/helpers";
+import { addChat } from "../../redux/liveChatSlice";
+import { generateName, randomLiveChat, generateRandomImage } from "../../utils/helpers";
 
 const LiveChatContainer = () => {
     const [liveUsersChat, setLiveUsersChat] = useState("");

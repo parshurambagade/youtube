@@ -1,12 +1,11 @@
-import Header from "./components/Header";
-
+import Header from "./layouts/Header";
 import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
+import appStore from "./redux/appStore";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Body from "./components/Body";
 import MainContainer from './components/MainContainer';
-import WatchVideo from "./components/WatchVideo";
-import Results from "./components/Results";
+import WatchVideo from "./pages/watchVideo/WatchVideo";
+import Results from "./pages/results/Results";
 
 const appRouter = createBrowserRouter([{
   path: '/',

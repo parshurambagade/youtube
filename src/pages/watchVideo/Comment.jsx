@@ -1,4 +1,4 @@
-import { formatCount, formatTimeAgo } from "../utils/helpers";
+import { formatCount, formatTimeAgo } from "../../utils/helpers";
 import { BiDislike, BiLike } from "react-icons/bi";
 
 const Comment = ({ comment }) => {
@@ -8,18 +8,18 @@ const Comment = ({ comment }) => {
     const replies =  comment?.replies?.comments;
   return (
     <>
-    <div className="flex gap-4 p-2 items-start my-2 w-full">
+    <div className="flex gap-4 p-2 items-start my-2 w-full overflow-hidden text-wrap">
       <img
         src={authorProfileImageUrl}
         alt="img"
         className="w-10 h-10    rounded-full border border-black"
       />
-      <div className="w-full">
+      <div className="w-[90%] lg:w-full text-wrap">
         <div className="flex gap-2">
-          <h4 className="font-bold text-base">{authorDisplayName}</h4>
-          <p className="text-gray-700">{formatTimeAgo(updatedAt)}</p>
+          <h4 className="font-bold text-sm lg:text-base">{authorDisplayName}</h4>
+          <p className="text-gray-700 text-xs lg:text-sm">{formatTimeAgo(updatedAt)}</p>
         </div>
-        <p className="text-wrap w-full">{textOriginal}</p>
+        <p className="text-wrap text-sm lg:text-base">{textOriginal}</p>
         <div className="flex py-2 rounded-full  text-xl items-center">
           <span className=" flex items-center gap-1 ">
             <BiLike />

@@ -15,3 +15,18 @@
       .buttonsContainer::-webkit-scrollbar-track {
         background-color: #ffffff; /* Set the color of the scrollbar track */
       }
+  
+      .videoButtonsContainer {
+        overflow-x: scroll; /* Show vertical scrollbar when content overflows */
+        scrollbar-width: thin; /* For Firefox */
+        scrollbar-color: transparent transparent; /* For Firefox */
+      }
+        /* For Webkit browsers (Chrome, Safari) */
+        .videoButtonsContainer::-webkit-scrollbar {
+          width: 12px; /* Set a width for the scrollbar */
+        }
+      
+       .videoButtonsContainer::-webkit-scrollbar-thumb {
+          background-color: transparent; /* Make the thumb (handle) transparent */
+        }
+      
