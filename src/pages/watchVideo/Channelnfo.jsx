@@ -19,11 +19,11 @@ const Channelnfo = ({channelId}) => {
     <div className="flex gap-2 lg:gap-4 items-center">
     <img src={channelInfo?.snippet?.thumbnails?.medium?.url} className="rounded-full w-10 h-10"/>
     <div className="flex gap-2  lg:flex-col lg:gap-0 leading-none">
-      <span className=" text-base lg:text-lg font-semibold">
+      <span className=" text-base md:text-lg font-semibold">
         {channelInfo?.snippet?.title} 
       </span>
-      <span className="text-gray-600 flex items-center text-xs lg:text-sm">
-        {formatCount(channelInfo?.statistics?.subscriberCount)} <span className='hidden md:flex'>subscribers</span>
+      <span className="text-gray-600 flex items-center text-xs md:text-sm">
+        {formatCount(channelInfo?.statistics?.subscriberCount) } <span className='hidden md:flex mx-2'> subscribers</span>
       </span>
     </div>
     </div> 

@@ -8,7 +8,7 @@ const VideoDescription = ({ description }) => {
   };
 
   return (
-    <div>
+    <div className="w-100 overflow-hidden text-wrap ">
       <p>
         {isExpanded ? description : `${description.slice(0, 100)}...`}
         {description.length > 100 && (

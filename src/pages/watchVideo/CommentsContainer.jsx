@@ -15,8 +15,8 @@ const CommentsContainer = ({videoId}) => {
     setComments(json.items);
   }
   return (
-    <div className="px-4 py-2 w-full">
-        <h2 className="text-xl font-bold">{comments.length} Top Comments:</h2>
+    <div className="px-2 lg:px-0 py-2 w-full">
+        <h2 className="text-base lg:text-xl font-bold">Top Comments:</h2>
         <div className="w-full">
         {comments.map((comment,i) => (
           <div key={i} className="w-full">

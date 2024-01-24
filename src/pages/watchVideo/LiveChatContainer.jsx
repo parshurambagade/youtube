@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addChat } from "../../redux/liveChatSlice";
 import { generateName, randomLiveChat, generateRandomImage } from "../../utils/helpers";
 
-const LiveChatContainer = () => {
+const LiveChatContainer = ({setShowMobileLiveChat}) => {
     const [liveUsersChat, setLiveUsersChat] = useState("");
 
     const dispatch = useDispatch();
@@ -41,8 +41,12 @@ const LiveChatContainer = () => {
         setLiveUsersChat("");
     }
   return (
-    <div className="w-[20vw] border border-gray-200 rounded-lg shadow-md h-[600px] mx-6 p-2  ">
-        <h2 className="my-1 h-[5%] font-medium ">Live chat:</h2>
+    <div className="w-full lg:w-[20vw] border border-gray-200 rounded-lg shadow-md h-[600px]  lg:mx-6 p-2  ">
+        <div className="flex justify-between">
+            <h2 className="my-1 h-[5%] font-medium ">Live chat:</h2>
+            <span className="border p-1 bg-red-400 rounded-lg mb-2" onClick={() => {setShowMobileLiveChat(false)}}>Close</span>
+        </div>
+        
         <div className="h-[85%] overflow-y-scroll border-t" ref={liveChatContainerRef}>
             {liveChat.map((chat, i) => (<LiveChat key={i} name={chat.name} text={chat.text} profilePic={chat.profilePic}/>))}  
         </div>
