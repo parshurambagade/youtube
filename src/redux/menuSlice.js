@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const menuSlice = createSlice({
     name: "showMenu",
     initialState: {
-        showMenu: true
+        showMenu: true,
+        showMobileMenu: false
     },
     reducers: {
         toggleMenu: (state) => {
@@ -11,8 +12,14 @@ const menuSlice = createSlice({
         },
         hideMenu: state => {
             state.showMenu = false;
+        },
+        toggleMobileMenu: (state) => {
+            state.showMobileMenu = !state.showMobileMenu;
+        },
+        hideMobileMenu: state => {
+            state.showMobileMenu = false;
         }
     }
 })
-export const {toggleMenu, hideMenu} = menuSlice.actions; 
+export const {toggleMenu, hideMenu, toggleMobileMenu, hideMobileMenu} = menuSlice.actions; 
 export default menuSlice.reducer;

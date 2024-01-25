@@ -13,7 +13,7 @@ const VideoDescription = ({ description }) => {
         {isExpanded ? description : `${description.slice(0, 100)}...`}
         {description.length > 100 && (
           <button onClick={toggleDescription} className="mx-2 font-medium">
-            {isExpanded ? 'Show Less' : 'Read More'}
+            {isExpanded ? 'Show less' : 'Read more'}
           </button>
         )}
       </p>

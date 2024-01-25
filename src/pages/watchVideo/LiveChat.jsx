@@ -5,8 +5,8 @@ const LiveChat = ({name, text, profilePic}) => {
     <div className="flex items-center gap-2 w-full0 p-2 ">
         <img src={profilePic} className="w-7 h-7 rounded-full border border-black" alt="profile pic" />
         <div className="">
-        <span className="font-bold min-w-max">{name} </span>
-        <span className="text-wrap">{text}</span>
+        <span className="font-bold md:text-xl min-w-max">{name} </span>
+        <span className="text-wrap md:text-lg">{text}</span>
         </div>
     </div>
   )

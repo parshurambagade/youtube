@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import menuReducer from "./menuSlice";
 import searchSlice from "./searchSlice";
 import liveChatSlice from "./liveChatSlice";
+import menuSlice from "./menuSlice";
+import mobileSearchbarSlice from "./mobileSearchbarSlice";
 
 const appStore = configureStore({
     reducer:{
-        menu: menuReducer,
+        menu: menuSlice,
         search: searchSlice,
-        liveChat: liveChatSlice
+        liveChat: liveChatSlice,
+        mobileSearchbar: mobileSearchbarSlice
     }
 })
 

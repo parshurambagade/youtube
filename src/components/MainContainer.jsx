@@ -5,9 +5,11 @@ import VideosContainer from './VideosContainer';
 
 const MainContainer = () => {
   const showMenu = useSelector(state => state.menu.showMenu);
+  const showMobileMenu = useSelector(state => state.menu.showMobileMenu);
 
+  const showMobileSearchbar = useSelector(state => state.mobileSearchbar.showMobileSearchbar);
   return (
-    <div className={`py-2 px-2 my-12  sm:px-4  w-full  ${!showMenu ? " lg:w-full xl:px-8" : "hidden md:flex md:w-3/4 lg:w-[85%] xl:pl-1 xl:pr-8"}  lg:my-16 flex flex-col justify-center`}> 
+    <div className={`py-2 px-2 ${showMobileSearchbar ? "my-0 md:my-0 pt-0" : "my-12"} md:my-16 lg:my-12  sm:px-4  w-full  ${!showMenu ? "w-full xl:px-8" : "  lg:w-[85%] xl:pl-1 xl:pr-8"} ${showMobileMenu && "hidden"}   flex flex-col justify-center`}> 
         <ButtonsContainer />
         <VideosContainer />
     </div>
