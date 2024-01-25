@@ -15,7 +15,7 @@ const Sidebar = () => {
   
 
   return !showMenu ? "" : (
-    <div className=" pl-8 my-20   text-center  w-full h-full lg:w-full   bg-white lg:flex flex-col gap-4 lg:px-8  shadow-md">
+    <div className=" pl-8 my-12  md:pl-4 text-center md:text-left w-full   h-full bg-white lg:flex flex-col gap-4 p-4 md:my-16 ">
 
         <div className="border-b pb-4 flex flex-col gap-4">
         <div className="flex gap-2 items-center">
