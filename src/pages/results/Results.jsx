@@ -17,7 +17,7 @@ const Results = () => {
   useEffect(() => {
     getVideos();
     dispatch(hideMobileMenu()); 
-  }, []);
+  }, [q]);
 
   const getVideos = async () => {
     const data = await fetch(FETCH_VIDEOS_BY_KEYWORD + q);
@@ -28,7 +28,7 @@ const Results = () => {
   return (
     <div className={`${showMobileMenu && "hidden"} w-full md:px-2 flex md:gap-2 flex-col ${showMobileSearchbar ? "my-0" : "my-12 md:my-20"}   lg:my-16`}>
       
-      {results?.length &&  
+      {results.length > 0 &&  
         results.map((video) => (
           <Link to={'/watch?v=' + video.id.videoId} key={video.id.videoId} className="w-full flex justify-center">
           <VideoCard key={video?.id?.videoId} video={video} />

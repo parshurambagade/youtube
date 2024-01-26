@@ -57,7 +57,8 @@ const MobileHeader = () => {
     handleFormSubmit();
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     navigate(`/results?search=${searchText}`);
   };
 
