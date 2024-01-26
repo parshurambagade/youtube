@@ -9,6 +9,7 @@ const Results = () => {
   const [results, setResults] = useState([]);
   
   let [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useDispatch();
   const q = searchParams.get("search");
   const showMobileMenu = useSelector(state => state.menu.showMobileMenu);
@@ -16,7 +17,7 @@ const Results = () => {
   useEffect(() => {
     getVideos();
     dispatch(hideMobileMenu()); 
-  }, [q]);
+  }, []);
 
   const getVideos = async () => {
     const data = await fetch(FETCH_VIDEOS_BY_KEYWORD + q);
