@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_AUTOCOMPLETE_API } from "../data/constants";
 import { cacheSuggestions } from "../redux/searchSlice";
 import { IoClose,IoArrowBack } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toggleMobileSearchbar } from "../redux/mobileSearchbarSlice";
 
 const MobileHeader = () => {
@@ -98,12 +98,12 @@ const MobileHeader = () => {
         <span onClick={() => toggleMenuClicked()} className="cursor-pointer">
           <FiMenu />
         </span>
-        <span className="text-2xl items-center font-bold gap-1 flex">
+        <Link to="/" className="text-2xl items-center font-bold gap-1 flex">
           <span className=" text-red-500">
             <FaYoutube />
           </span>
           <span className="text-xl">YouTube</span>
-        </span>
+        </Link>
       </div>
 
       {/* right container  */}

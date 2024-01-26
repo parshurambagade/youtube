@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_AUTOCOMPLETE_API } from "../data/constants";
 import { cacheSuggestions } from "../redux/searchSlice";
 import { IoClose } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   
@@ -69,6 +69,8 @@ const Header = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     navigate(`/results?search=${searchText}`);
+    setSearchText("");
+
   }
 
   return (
@@ -76,8 +78,10 @@ const Header = () => {
 
         <div className="flex w-[10%] md:w-[15%] lg:w-max items-center gap-3 lg:gap-5">
             <span onClick={() => toggleMenuClicked()} className="cursor-pointer"><FiMenu /></span>
-            <span className="items-center font-bold gap-1 flex">
-              <span className="text-3xl text-red-500"><FaYoutube /></span><span className="hidden md:flex">YouTube</span></span>
+            <Link to='/' className="items-center font-bold gap-1 flex">
+              <span className="text-3xl text-red-500"><FaYoutube /></span>
+              <span className="hidden md:flex">YouTube</span>
+            </Link>
         </div>
 
         <div className="flex w-[75%] py-0 sm:w-[80%] md:w-[70%] lg:w-[50%]  flex-col justify-center items-center md:items-end lg:items-center"   >
