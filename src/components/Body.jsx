@@ -10,7 +10,7 @@ const Body = () => {
       <div className="block lg:hidden "><MobileHeader /></div>
       <div className="hidden lg:block"><Header /></div>
       <div className="flex w-full h-full justify-center lg:overflow-x-hidden"> 
-        <div className="hidden h-full w-[35%] md:w-[20%] lg:flex">
+        <div className="hidden  lg:flex">
           <Sidebar />
         </div>
         <div className="flex lg:hidden">

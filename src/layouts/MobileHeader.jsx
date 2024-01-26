@@ -60,12 +60,13 @@ const MobileHeader = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     navigate(`/results?search=${searchText}`);
+    setSearchText("")
   };
 
   return (
     showMobileSearchbar ? 
     <div className="flex flex-col items-center h-max   w-[100vw] py-2 md:py-4 "   >
-        <div className="flex w-full justify-evenly items-center" >
+        <div className={`flex w-full ${showMobileSearchbar ? "justify-between px-2" : "justify-evenly"} items-center`} >
             
             <span onClick={() => dispatch(toggleMobileSearchbar())}><IoArrowBack /></span>
 

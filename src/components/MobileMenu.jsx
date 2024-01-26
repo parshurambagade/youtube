@@ -14,11 +14,12 @@ import { hideMenu, hideMobileMenu } from "../redux/menuSlice";
 const MobileMenu = () => {
   // const showMenu = useSelector((state) => state.menu.showMenu);
   const showMobileMenu = useSelector(state => state.menu.showMobileMenu);
-
+  const showMobileSearchbar = useSelector(state => state.mobileSearchbar.showMobileSearchbar);
+  // console.log(showMobileSearchbar)
     const dispatch = useDispatch();
 
   return !showMobileMenu ? "" : (
-    <div className={`${!showMobileMenu && "hidden"}pl-8 my-12 md:pl-12 text-center md:text-left w-[100vw]  h-full bg-white flex flex-col gap-4 p-4 md:my-20 md:text-lg`}>
+    <div className={`${(!showMobileMenu) && "hidden"}pl-8 my-12 md:pl-12 text-center md:text-left w-[100vw]  h-full bg-white flex flex-col gap-4 p-4 md:my-20 md:text-lg`}>
 
         <div className="border-b pb-4 flex flex-col gap-4 md:gap-6">
         <div className="flex gap-2 items-center">

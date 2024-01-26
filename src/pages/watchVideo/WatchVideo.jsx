@@ -13,6 +13,7 @@ import VideoDescription from "./VideoDescription";
 import Channelnfo from "./Channelnfo";
 import { FETCH_VIDEOS_DETAILS } from "../../data/constants";
 import { MdCircle } from "react-icons/md";
+import { hideMobileSearchbar } from "../../redux/mobileSearchbarSlice";
 
 const WatchVideo = () => {
   const [video, setVideo] = useState({});
@@ -25,6 +26,7 @@ const WatchVideo = () => {
 
   useEffect(() => {
     dispatch(hideMenu());
+    dispatch(hideMobileSearchbar());
   }, []);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const WatchVideo = () => {
 
   return (
     <div
-      className={`flex w-full mb-0  lg:w-[85%] lg:ml-12 overflow-hidden justify-center ${showMobileSearchbar ? "my-0 md:my-0" : "my-12"} md:my-16`}
+      className={`flex w-full mb-0  lg:w-[85%] lg:ml-12 overflow-hidden justify-center ${showMobileSearchbar ? "my-0 md:my-0" : "my-12 md:my-16"} `}
     >
       <div
         className={`w-full flex flex-col lg:flex-row ${
@@ -48,7 +50,7 @@ const WatchVideo = () => {
         {/* video frame */}
         <div
           className={`w-[100vw]  lg:${
-            showMenu ? "w-[70%]" : "w-[80%]"
+            showMenu ? "w-[80%]" : "w-[80%]"
           } flex flex-col items-center`}
         >
           <iframe

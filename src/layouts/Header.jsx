@@ -20,6 +20,8 @@ const Header = () => {
 
   // console.log(cachedSuggestions);
 
+  
+
   useEffect(() => {
     // console.log(searchSuggestions);
     const timer = setTimeout(() => {
@@ -40,7 +42,7 @@ const Header = () => {
 
   
   const fetchSearchSuggestions = async () => {
-
+    //FIX CORS ERROR
     const data = await fetch(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText);
     const json = await data.json();
     setSearchSuggestions(json[1]);
@@ -81,7 +83,7 @@ const Header = () => {
         <div className="flex w-[75%] py-0 sm:w-[80%] md:w-[70%] lg:w-[50%]  flex-col justify-center items-center md:items-end lg:items-center"   >
           <form className="flex w-full justify-center" onSubmit={handleFormSubmit}>   
             <input type="text" name="search" autoComplete="off" placeholder="Search" className="border text-sm sm:text-base lg:text-lg px-4 py-1 rounded-l-full border-slate-300 border-r-0 w-full md:w-3/4 focus:outline-none " onChange={searchHandleChange} value={searchText} onFocus={() => setShowSuggestions(true)}/>
-            {searchText && <span className="border border-l-0 px-2 flex items-center text-lg py-1 cursor-pointer text-gray-700 " ><IoClose /></span>}
+            {searchText && <span className="border border-l-0 px-2 flex items-center text-lg py-1 cursor-pointer text-gray-700 " onClick={() => setSearchText("")} ><IoClose /></span>}
             <button className="border bg-gray-200 border-slate-300 rounded-r-full px-4  text-lg"><FiSearch /></button>
           </form>
           

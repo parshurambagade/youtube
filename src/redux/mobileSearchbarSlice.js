@@ -7,10 +7,12 @@ const mobileSearchbarSlice = createSlice({
     },
     reducers: {
         toggleMobileSearchbar: (state) => {
-        
             state.showMobileSearchbar = !state.showMobileSearchbar
+        },
+        hideMobileSearchbar: (state) => {
+            state.showMobileSearchbar = false;
         }
     }
 })
-export const {toggleMobileSearchbar} = mobileSearchbarSlice.actions;
+export const {toggleMobileSearchbar,hideMobileSearchbar} = mobileSearchbarSlice.actions;
 export default mobileSearchbarSlice.reducer;
