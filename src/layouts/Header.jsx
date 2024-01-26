@@ -65,7 +65,7 @@ const Header = () => {
   };
 
   const handleFormSubmit = () => {
-    navigate("/results");
+    navigate(`/results?search=${searchText}`);
   }
 
   return (
