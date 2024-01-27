@@ -79,8 +79,8 @@ const Header = () => {
         <div className="flex w-[10%] md:w-[15%] lg:w-max items-center gap-3 lg:gap-5">
             <span onClick={() => toggleMenuClicked()} className="cursor-pointer"><FiMenu /></span>
             <Link to='/' className="items-center font-bold gap-1 flex">
-              <span className="text-3xl text-red-500"><FaYoutube /></span>
-              <span className="hidden md:flex">YouTube</span>
+              <span className="text-3xl text-blue-500"><FaYoutube /></span>
+              <span className="hidden md:flex">VideoX</span>
             </Link>
         </div>
 

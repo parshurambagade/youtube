@@ -26,7 +26,7 @@ const MobileMenu = () => {
           <Link to="/" className="flex gap-2 items-center" onClick={() => dispatch(hideMobileMenu())}><FaHome /> Home</Link></div>
         <div className="flex gap-2 items-center"><SiYoutubeshorts />Shorts</div>
         <div className="flex gap-2 items-center"><MdSubscriptions />Subscriptions</div>
-        <div className="flex gap-2 items-center"><SiYoutubemusic />MyTube Music</div>
+        <div className="flex gap-2 items-center"><SiYoutubemusic />VideoX Music</div>
         </div>
 
         <div className="border-b pb-4 flex flex-col gap-4 md:gap-6">

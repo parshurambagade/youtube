@@ -99,10 +99,10 @@ const MobileHeader = () => {
           <FiMenu />
         </span>
         <Link to="/" className="text-2xl items-center font-bold gap-1 flex">
-          <span className=" text-red-500">
+          <span className=" text-blue-500">
             <FaYoutube />
           </span>
-          <span className="text-xl">YouTube</span>
+          <span className="text-xl">VideoX</span>
         </Link>
       </div>
 

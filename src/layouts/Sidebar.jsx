@@ -15,14 +15,14 @@ const Sidebar = () => {
   
 
   return !showMenu ? "" : (
-    <div className=" pl-8 my-12  md:pl-4 text-center md:text-left w-full lg:w-[15vw]    bg-white lg:flex flex-col gap-4 shadow-md p-4 md:my-16 ">
+    <div className=" pl-8 my-12  md:pl-4 text-center md:text-left w-full lg:w-[15vw]  bg-white lg:flex flex-col gap-4 shadow-md p-4 md:my-16 ">
 
         <div className="border-b pb-4 flex flex-col gap-4">
         <div className="flex gap-2 items-center">
           <Link to="/" className="flex gap-2 items-center"><FaHome /> Home</Link></div>
         <div className="flex gap-2 items-center"><SiYoutubeshorts />Shorts</div>
         <div className="flex gap-2 items-center"><MdSubscriptions />Subscriptions</div>
-        <div className="flex gap-2 items-center"><SiYoutubemusic />MyTube Music</div>
+        <div className="flex gap-2 items-center"><SiYoutubemusic />VideoX Music</div>
         </div>
 
         <div className="border-b pb-4 flex flex-col gap-4">
