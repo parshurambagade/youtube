@@ -7,8 +7,22 @@ import { YOUTUBE_SEARCH_AUTOCOMPLETE_API } from "../data/constants";
 import { cacheSuggestions } from "../redux/searchSlice";
 import { IoClose } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { login, logout, setToken } from "../redux/userSlice";
+import { app } from "../firebase";
+import { MdLogout } from "react-icons/md";
+
+
+
+
 
 const Header = () => {
+
+  
+
+
+  const userState = useSelector((state) => state.user.user);
+ 
   
   const [searchText, setSearchText] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
@@ -20,7 +34,7 @@ const Header = () => {
 
   // console.log(cachedSuggestions);
 
-  
+  const auth = getAuth(app);
 
   useEffect(() => {
     // console.log(searchSuggestions);
@@ -50,6 +64,44 @@ const Header = () => {
   }
 
 
+  const handleLoginClicked =  () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      
+  
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      // console.log(credential);
+  
+      const token = credential.accessToken;
+      
+      const user = result.user;
+      // console.log(user);
+      if(userState){
+        return;
+      }else{
+        dispatch(setToken(token));
+        dispatch(login(user));
+      }
+     
+  
+  
+  
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      // console.log(errorCode);
+      const errorMessage = error.message;
+      // console.log(errorMessage);
+      // The email of the user's account used.
+      // const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(`Credential: ${credential}, Error: ${error}, Code: ${errorCode}, Message: ${errorMessage}`);
+      // ...
+    });
+  }
 
   
   const toggleMenuClicked = () => {
@@ -73,8 +125,12 @@ const Header = () => {
 
   }
 
+  const handleLogoutClicked = () => {
+    dispatch(logout());
+  }
+
   return (
-    <div className=" w-[100vw] box-border  h-[6vh] fixed bg-white lg:flex px-2 py-2 md:px-4 lg:px-8 lg:py-3 justify-between text-2xl items-center" >
+    <div className=" w-[100vw] box-border  h-[6vh] fixed bg-white lg:flex px-2 py-2 md:px-4 lg:px-8 lg:py-8 border-b justify-between text-2xl items-center" >
 
         <div className="flex w-[10%] md:w-[15%] lg:w-max items-center gap-3 lg:gap-5">
             <span onClick={() => toggleMenuClicked()} className="cursor-pointer"><FiMenu /></span>
@@ -102,7 +158,13 @@ const Header = () => {
 
         <div className="hidden sm:flex w-[5%] lg:w-max gap-0 items-center justify-end lg:gap-4">
             <span className="hidden lg:flex"><FaBell /></span>
-            <span><FaUserCircle /></span>
+            <div>
+              {userState ? 
+              <div className="flex gap-4 items-center">
+               <img src={userState.photoURL} alt={userState.displayName} className="w-8 h-8 rounded-full" />
+                <span onClick={handleLogoutClicked} className="cursor-pointer"><MdLogout /></span>
+              </div> : <button onClick={handleLoginClicked} className="px-4 py-2 text-sm bg-blue-500 text-white rounded-md">Login</button> }
+            </div>
         </div>
     </div>
   )

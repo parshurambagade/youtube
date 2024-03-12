@@ -8,12 +8,17 @@ import { cacheSuggestions } from "../redux/searchSlice";
 import { IoClose,IoArrowBack } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { toggleMobileSearchbar } from "../redux/mobileSearchbarSlice";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { login, logout, setToken } from "../redux/userSlice";
+import { app } from "../firebase";
+import { MdLogout } from "react-icons/md";
 
 const MobileHeader = () => {
   const [searchText, setSearchText] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+  const userState = useSelector((state) => state.user.user);
     const showMobileSearchbar = useSelector((state) => state.mobileSearchbar.showMobileSearchbar);
     
   const dispatch = useDispatch();
@@ -21,6 +26,7 @@ const MobileHeader = () => {
   const navigate = useNavigate();
 
   // console.log(cachedSuggestions);
+  const auth = getAuth(app);
 
   useEffect(() => {
     // console.log(searchSuggestions);
@@ -63,9 +69,52 @@ const MobileHeader = () => {
     setSearchText("")
   };
 
+  const handleLoginClicked =  () => {
+    const provider = new GoogleAuthProvider();
+
+    signInWithPopup(auth, provider)
+    .then((result) => {
+      
+  
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      // console.log(credential);
+  
+      const token = credential.accessToken;
+      
+      const user = result.user;
+      // console.log(user);
+      if(userState){
+        return;
+      }else{
+        dispatch(setToken(token));
+        dispatch(login(user));
+      }
+     
+  
+  
+  
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      // console.log(errorCode);
+      const errorMessage = error.message;
+      // console.log(errorMessage);
+      // The email of the user's account used.
+      // const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log(`Credential: ${credential}, Error: ${error}, Code: ${errorCode}, Message: ${errorMessage}`);
+      // ...
+    });
+  }
+
+  const handleLogoutClicked = () => {
+    dispatch(logout());
+  }
+
   return (
     showMobileSearchbar ? 
-    <div className="flex flex-col items-center h-max   w-[100vw] py-2 md:py-4 "   >
+    <div className="flex flex-col items-center h-max   w-[100vw] py-4 "   >
         <div className={`flex w-full ${showMobileSearchbar ? "justify-between px-2" : "justify-evenly"} items-center`} >
             
             <span onClick={() => dispatch(toggleMobileSearchbar())}><IoArrowBack /></span>
@@ -107,13 +156,17 @@ const MobileHeader = () => {
       </div>
 
       {/* right container  */}
-      <div className="flex gap-4 text-xl">
+      <div className="flex gap-4 text-xl items-center">
         <span onClick={() => dispatch(toggleMobileSearchbar())}>
           <FiSearch />
         </span>
-        <span>
-          <FaUserCircle />
-        </span>
+        <div>
+              {userState ? 
+              <div className="flex gap-4 items-center">
+               <img src={userState.photoURL} alt={userState.displayName} className="w-8 h-8 rounded-full" />
+                <span onClick={handleLogoutClicked} className="cursor-pointer"><MdLogout /></span>
+              </div> : <button onClick={handleLoginClicked} className="px-2 py-1 text-sm bg-blue-500 text-white rounded-md">Login</button> }
+            </div>
       </div>
 
       
