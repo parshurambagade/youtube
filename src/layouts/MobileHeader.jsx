@@ -128,13 +128,13 @@ const MobileHeader = () => {
 
   return (
     showMobileSearchbar ? 
-    <div className="flex flex-col items-center h-max   w-[100vw] py-4 "   >
+    <div className="flex flex-col items-center h-max   w-[100vw] py-4 text-xl px-3 "   >
         <div className={`flex w-full ${showMobileSearchbar ? "justify-between px-2" : "justify-evenly"} items-center`} >
             
             <span onClick={() => dispatch(toggleMobileSearchbar())}><IoArrowBack /></span>
 
             <form className="w-[70%]  flex justify-center " onSubmit={handleFormSubmit}>   
-                <input type="text" name="search" autoComplete="off" placeholder="Search" className="border text-sm md:w-full  px-4 py-1 rounded-l-full border-slate-300 border-r-0 focus:outline-none " onChange={searchHandleChange} value={searchText} onFocus={() => setShowSuggestions(true)}/>
+                <input type="text" name="search" autoComplete="off" placeholder="Search" className="border text-base md:w-full  px-4 py-2 rounded-l-full border-slate-300 border-r-0 focus:outline-none " onChange={searchHandleChange} value={searchText} onFocus={() => setShowSuggestions(true)}/>
                 {searchText && 
                 <span className="border border-l-0 px-1 flex items-center text-lg py-1 cursor-pointer text-gray-700 " onClick={() => setSearchText("")}><IoClose /></span>}
                 <button className="border  bg-gray-200 border-slate-300 rounded-r-full px-2  text-base py-1"><FiSearch /></button>
@@ -154,23 +154,23 @@ const MobileHeader = () => {
        }
      </div>
     : 
-    <div className="w-[100vw] box-border shadow-md h-[7vh] md:h-[6vh] fixed bg-white flex px-2 py-2 md:px-4 justify-between text-2xl items-center">
+    <div className="w-[100vw] box-border shadow-md  md:h-[6vh] fixed bg-white flex px-4 py-4 md:px-4 justify-between text-2xl items-center">
 
         {/* left container  */}
       <div className="flex w-[10%] md:w-[15%] lg:w-max items-center gap-3 lg:gap-5">
         <span onClick={() => toggleMenuClicked()} className="cursor-pointer">
           <FiMenu />
         </span>
-        <Link to="/" className="text-2xl items-center font-bold gap-1 flex">
+        <Link to="/" className="text-4xl items-center font-bold gap-1 flex">
           <span className=" text-blue-500">
             <FaYoutube />
           </span>
-          <span className="text-xl">VideoX</span>
+          <span className="text-2xl">VideoX</span>
         </Link>
       </div>
 
       {/* right container  */}
-      <div className="flex gap-4 text-xl items-center">
+      <div className="flex gap-4 text-2xl items-center">
         <span onClick={() => dispatch(toggleMobileSearchbar())}>
           <FiSearch />
         </span>
@@ -180,7 +180,7 @@ const MobileHeader = () => {
                <img src={userState.photoURL} alt={userState.displayName} className="w-8 h-8 rounded-full" />
                 <span onClick={handleLogoutClicked} className="cursor-pointer"><MdLogout /></span>
               </div> : <button
-        className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2  rounded"
+        className="text-base bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2  rounded"
         onClick={openLoginModal}
       >
         Login

@@ -19,30 +19,30 @@ const MobileMenu = () => {
     const dispatch = useDispatch();
 
   return !showMobileMenu ? "" : (
-    <div className={`${(!showMobileMenu) && "hidden"}pl-8 my-12 md:pl-12 text-center md:text-left w-[100vw]  h-full bg-white flex flex-col gap-4 p-4 md:my-20 md:text-lg`}>
+    <div className={`${(!showMobileMenu) && "hidden"}   mt-16  mb-4x md:pl-12 text-center md:text-left w-[100vw]  h-full bg-white flex flex-col gap-4 p-4 md:my-20 text-lg`}>
 
-        <div className="border-b pb-4 flex flex-col gap-4 md:gap-6">
+        <div className="border-b py-6 flex flex-col gap-6 mx-auto w-1/2">
         <div className="flex gap-2 items-center">
-          <Link to="/" className="flex gap-2 items-center" onClick={() => dispatch(hideMobileMenu())}><FaHome /> Home</Link></div>
-        <div className="flex gap-2 items-center"><SiYoutubeshorts />Shorts</div>
-        <div className="flex gap-2 items-center"><MdSubscriptions />Subscriptions</div>
-        <div className="flex gap-2 items-center"><SiYoutubemusic />VideoX Music</div>
+          <Link to="/" className="flex gap-6 items-center" onClick={() => dispatch(hideMobileMenu())}><FaHome /> Home</Link></div>
+        <div className="flex gap-6 items-center "><SiYoutubeshorts />Shorts</div>
+        <div className="flex gap-6 items-center"><MdSubscriptions />Subscriptions</div>
+        <div className="flex gap-6 items-center"><SiYoutubemusic />VideoX Music</div>
         </div>
 
-        <div className="border-b pb-4 flex flex-col gap-4 md:gap-6">
-        <div className="flex gap-2 items-center"><BiSolidUserRectangle /> Your channel</div>
-        <div className="flex gap-2 items-center"><FaHistory />History</div>
-        <div className="flex gap-2 items-center"><BiSolidVideos />Your videos</div>
-        <div className="flex gap-2 items-center"><PiDownloadSimpleBold />Downloads</div>
-        <div className="flex gap-2 items-center"><MdWatchLater />Watch later</div>
+        <div className="border-b py-6 flex flex-col gap-6 mx-auto w-1/2">
+        <div className="flex gap-6 items-center"><BiSolidUserRectangle /> Your channel</div>
+        <div className="flex gap-6 items-center"><FaHistory />History</div>
+        <div className="flex gap-6 items-center"><BiSolidVideos />Your videos</div>
+        <div className="flex gap-6 items-center"><PiDownloadSimpleBold />Downloads</div>
+        <div className="flex gap-6 items-center"><MdWatchLater />Watch later</div>
         </div>
 
-        <div className="border-b pb-4 flex flex-col gap-4 md:gap-6">
-        <div className="flex gap-2 items-center"><BsFire /> Trending</div>
-        <div className="flex gap-2 items-center"><GiShoppingBag />Shopping</div>
-        <div className="flex gap-2 items-center"><FaMusic />Music</div>
-        <div className="flex gap-2 items-center"><RiLiveFill />Live</div>
-        <div className="flex gap-2 items-center"><SiYoutubegaming />Gaming</div>
+        <div className="border-b py-6 flex flex-col gap-6 mx-auto w-1/2">
+        <div className="flex gap-6 items-center"><BsFire /> Trending</div>
+        <div className="flex gap-6 items-center"><GiShoppingBag />Shopping</div>
+        <div className="flex gap-6 items-center"><FaMusic />Music</div>
+        <div className="flex gap-6 items-center"><RiLiveFill />Live</div>
+        <div className="flex gap-6 items-center"><SiYoutubegaming />Gaming</div>
         </div>
 
 
