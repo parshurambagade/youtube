@@ -9,6 +9,7 @@ import Results from "./pages/results/Results";
 import { useEffect } from "react";
 import { getAuth } from "firebase/auth";
 import { app } from "./firebase";
+import Subscriptions from "./pages/subscriptions/Subscriptions";
 
 
 const appRouter = createBrowserRouter([{
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([{
     {
       path: 'results',
       element: <Results />
+    },
+    {
+      path: 'subscriptions',
+      element: <Subscriptions />
     }
   ]
 }])

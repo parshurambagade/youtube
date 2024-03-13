@@ -12,3 +12,7 @@ export const FETCH_VIDEOS_DETAILS = `https://www.googleapis.com/youtube/v3/video
 export const FETCH_VIDEO_COMMENTS = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&maxResults=50&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&videoId=`
 
 export const FETCH_CHANNEL_DETAILS = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&id=`   
+
+// export const FETCH_SUBSCRIPTIONS = `https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&mySubscribers=false&channelId=`
+
+export const FETCH_SUBSCRIPTIONS = `https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.subscriptions.list?part=snippet,contentDetails&mine=true`

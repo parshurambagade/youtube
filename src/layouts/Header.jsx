@@ -11,13 +11,21 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { login, logout, setToken } from "../redux/userSlice";
 import { app } from "../firebase";
 import { MdLogout } from "react-icons/md";
-
+import { FcGoogle } from "react-icons/fc";
 
 
 
 
 const Header = () => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
+  const openLoginModal = () => {
+    setShowLoginModal(true);
+  };
+
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
   
 
 
@@ -66,7 +74,8 @@ const Header = () => {
 
   const handleLoginClicked =  () => {
     const provider = new GoogleAuthProvider();
-
+    // console.log("login clicked");
+    setShowLoginModal(false);
     signInWithPopup(auth, provider)
     .then((result) => {
       
@@ -163,7 +172,60 @@ const Header = () => {
               <div className="flex gap-4 items-center">
                <img src={userState.photoURL} alt={userState.displayName} className="w-8 h-8 rounded-full" />
                 <span onClick={handleLogoutClicked} className="cursor-pointer"><MdLogout /></span>
-              </div> : <button onClick={handleLoginClicked} className="px-4 py-2 text-sm bg-blue-500 text-white rounded-md">Login</button> }
+              </div> : <button
+        className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 lg:py-2 px-2 lg:px-4 rounded"
+        onClick={openLoginModal}
+      >
+        Login
+      </button> }
+
+      {showLoginModal && (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+              <div className="p-4">
+                <div className="text-center pb-8">
+                <Link to='/' className=" justify-center items-center font-bold gap-0 flex flex-col my-6 ">
+              <span className="text-8xl text-blue-500"><FaYoutube /></span>
+              {/* <span className="hidden md:flex">VideoX</span> */}
+            </Link>
+                  <h2 className="text-xl font-bold ">Sign In To Your Account</h2>
+                  <div className="mt-3 text-center sm:mt-5 mb-4">
+                    <button
+                      onClick={closeLoginModal}
+                      className="absolute top-2 right-2 p-2"
+                    >
+                      <svg
+                        className="h-6 w-6 text-gray-700"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      className="flex items-center justify-center mx-auto gap-4 text-sm lg:text-base border border-slate-300 bg-white hover:bg-slate-100 text-gray-800 font-bold py-1 lg:py-2 px-2 lg:px-4 rounded mt-5"
+                      onClick={handleLoginClicked}
+                    >
+                      <span className="text-lg"><FcGoogle /></span>
+                      <span>Sign in with Google</span>
+                    </button>
+                  </div>
+                  <div className="text-base">Continue without sign in? <span className="text-blue-700 cursor-pointer" onClick={() => setShowLoginModal(false)}>Explore</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
             </div>
         </div>
     </div>

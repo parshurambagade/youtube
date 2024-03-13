@@ -12,11 +12,23 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { login, logout, setToken } from "../redux/userSlice";
 import { app } from "../firebase";
 import { MdLogout } from "react-icons/md";
+import { FcGoogle } from "react-icons/fc";
 
 const MobileHeader = () => {
   const [searchText, setSearchText] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const openLoginModal = () => {
+    setShowLoginModal(true);
+  };
+
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+  };
+  
 
   const userState = useSelector((state) => state.user.user);
     const showMobileSearchbar = useSelector((state) => state.mobileSearchbar.showMobileSearchbar);
@@ -71,6 +83,8 @@ const MobileHeader = () => {
 
   const handleLoginClicked =  () => {
     const provider = new GoogleAuthProvider();
+
+    setShowLoginModal(false);
 
     signInWithPopup(auth, provider)
     .then((result) => {
@@ -165,7 +179,60 @@ const MobileHeader = () => {
               <div className="flex gap-4 items-center">
                <img src={userState.photoURL} alt={userState.displayName} className="w-8 h-8 rounded-full" />
                 <span onClick={handleLogoutClicked} className="cursor-pointer"><MdLogout /></span>
-              </div> : <button onClick={handleLoginClicked} className="px-2 py-1 text-sm bg-blue-500 text-white rounded-md">Login</button> }
+              </div> : <button
+        className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2  rounded"
+        onClick={openLoginModal}
+      >
+        Login
+      </button> }
+
+      {showLoginModal && (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <div className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+              <div className="py-4 px-8">
+                <div className="text-center pb-6">
+                <Link to='/' className=" justify-center items-center font-bold gap-0 flex flex-col my-6 ">
+              <span className="text-8xl text-blue-500"><FaYoutube /></span>
+              {/* <span className="hidden md:flex">VideoX</span> */}
+            </Link>
+                  <h2 className="text-xl font-bold ">Sign In To Your Account</h2>
+                  <div className="mt-3 text-center sm:mt-5 mb-4">
+                    <button
+                      onClick={closeLoginModal}
+                      className="absolute top-2 right-2 p-2"
+                    >
+                      <svg
+                        className="h-6 w-6 text-gray-700"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      className="flex items-center justify-center mx-auto gap-4 text-sm lg:text-base border border-slate-300 bg-white hover:bg-slate-100 text-gray-800 font-bold py-2 px-4 rounded mt-5"
+                      onClick={handleLoginClicked}
+                    >
+                      <span className="text-lg"><FcGoogle /></span>
+                      <span>Sign in with Google</span>
+                    </button>
+                  </div>
+                  <div className="text-base">Continue without sign in? <span className="text-blue-700 cursor-pointer" onClick={() => setShowLoginModal(false)}>Explore</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
             </div>
       </div>
 
