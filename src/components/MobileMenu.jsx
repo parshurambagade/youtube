@@ -18,8 +18,11 @@ const MobileMenu = () => {
   // console.log(showMobileSearchbar)
     const dispatch = useDispatch();
 
+    // TODO: Remove text in the mobile menu, keep only icons;
+    // TODO: Adjust the size of mobile menu;
+    
   return !showMobileMenu ? "" : (
-    <div className={`${(!showMobileMenu) && "hidden"}   mt-16  mb-4x md:pl-12 text-center md:text-left w-[100vw]  h-full bg-white flex flex-col gap-4 p-4 md:my-20 text-lg`}>
+    <div className={`${(!showMobileMenu) && "hidden"}   mt-16  mb-4x md:pl-12 text-center md:text-left w-[100vw] h-max  max-h-screen overflow-hidden bg-white flex flex-col gap-4 p-4 md:my-20 text-lg`}>
 
         <div className="border-b py-6 flex flex-col gap-6 mx-auto w-1/2">
         <div className="flex gap-2 items-center">

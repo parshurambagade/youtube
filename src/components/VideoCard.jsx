@@ -17,7 +17,7 @@ const VideoCard = ({ video }) => {
       const data = await fetch(FETCH_CHANNEL_ICON + channelId);
       const json = await data.json();
       setChannelIcon(json?.items[0]?.snippet?.thumbnails?.medium?.url);
-      console.log(json?.items[0]?.snippet?.thumbnails?.medium?.url);
+      // console.log(json?.items[0]?.snippet?.thumbnails?.medium?.url);
     }
     // console.log(typeof(viewCount))
   return (

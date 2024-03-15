@@ -11,9 +11,15 @@ const Channelnfo = ({channelId}) => {
     },[channelId]);
 
     const fetchChannelDetails = async () => {
+      try{
         const data = await fetch(FETCH_CHANNEL_DETAILS + channelId);
         const json = await data.json();
-        setChannelInfo(json.items[0]);
+        // console.log(json?.items[0]);
+        json.items!==undefined && setChannelInfo(json.items[0]);
+      }catch(err){
+        console.log(err);
+      }
+       
     }
   return (channelInfo &&
     <div className="flex gap-2 lg:gap-4 items-center">

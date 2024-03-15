@@ -11,13 +11,17 @@ import { LuDownload } from "react-icons/lu";
 import { RiPlayListAddFill } from "react-icons/ri";
 import VideoDescription from "./VideoDescription";
 import Channelnfo from "./Channelnfo";
-import { FETCH_VIDEOS_DETAILS } from "../../data/constants";
+import { FETCH_RELATED_VIDEOS, FETCH_RELATED_VIDEOS_OPTIONS, FETCH_VIDEOS_DETAILS } from "../../data/constants";
 import { MdCircle } from "react-icons/md";
 import { hideMobileSearchbar } from "../../redux/mobileSearchbarSlice";
+import RelatedVideos from "./RelatedVideos";
+
+// TODO: display the relatedvideos container in small devices 
 
 const WatchVideo = () => {
   const [video, setVideo] = useState({});
   const [showMobileLiveChat, setShowMobileLiveChat] = useState(false);
+  const [relatedVideos, setRelatedVideos] = useState([]);  
   const showMobileSearchbar = useSelector(state => state.mobileSearchbar.showMobileSearchbar); 
   const dispatch = useDispatch();
   const showMenu = useSelector((state) => state.menu.showMenu);
@@ -31,19 +35,49 @@ const WatchVideo = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const videoData = await fetch(FETCH_VIDEOS_DETAILS + videoId);
-      const videoJson = await videoData.json();
-      setVideo(videoJson?.items[0]);
+      try{
+        const videoData = await fetch(FETCH_VIDEOS_DETAILS + videoId);
+        const videoJson = await videoData.json();
+        setVideo(videoJson?.items[0]);
+      console.log(relatedVideos)
+  
+      }catch(err){
+        console.log(err);
+      }
+      
     };
     fetchData();
   }, [videoId]);
 
+  useEffect(() => {
+    
+    const fetchRelatedVideos = async () => {
+      try{
+      const data = await fetch(
+        FETCH_RELATED_VIDEOS.concat(videoId), FETCH_RELATED_VIDEOS_OPTIONS
+      );
+      const json = await data.json();
+      console.log(json.videos)
+      setRelatedVideos(json.videos);
+      
+      }catch(err){
+        console.log(err);
+      }
+    }
+
+    fetchRelatedVideos();
+
+  },[videoId])
+  
+  
+
+  
   return (
     <div
       className={`flex w-full mb-0  lg:w-[85%] lg:ml-12 overflow-hidden justify-center ${showMobileSearchbar ? "my-0 md:my-0" : "my-12 md:my-16"} `}
     >
       <div
-        className={`w-full flex flex-col lg:flex-row ${
+        className={`w-full  flex flex-col lg:flex-row ${
           showMenu ? "justify-start" : "justify-center"
         }`}
       >
@@ -154,8 +188,9 @@ const WatchVideo = () => {
           </div>
         </div>
 
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex lg:flex-col lg:items-center">
           <LiveChatContainer />
+          <RelatedVideos relatedVideos={relatedVideos} />
         </div>
       </div>
     </div>

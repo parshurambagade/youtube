@@ -128,7 +128,7 @@ const MobileHeader = () => {
 
   return (
     showMobileSearchbar ? 
-    <div className="flex flex-col items-center h-max   w-[100vw] py-4 text-xl px-3 "   >
+    <div className="flex flex-col items-center h-max   w-[100vw] py-2 text-xl px-3 "   >
         <div className={`flex w-full ${showMobileSearchbar ? "justify-between px-2" : "justify-evenly"} items-center`} >
             
             <span onClick={() => dispatch(toggleMobileSearchbar())}><IoArrowBack /></span>
@@ -154,7 +154,7 @@ const MobileHeader = () => {
        }
      </div>
     : 
-    <div className="w-[100vw] box-border shadow-md  md:h-[6vh] fixed bg-white flex px-4 py-4 md:px-4 justify-between text-2xl items-center">
+    <div className="w-[100vw] box-border shadow-md  md:h-[6vh] fixed bg-white flex px-4 py-3 md:px-4 justify-between text-2xl items-center">
 
         {/* left container  */}
       <div className="flex w-[10%] md:w-[15%] lg:w-max items-center gap-3 lg:gap-5">

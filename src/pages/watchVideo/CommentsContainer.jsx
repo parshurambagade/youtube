@@ -14,6 +14,9 @@ const CommentsContainer = ({videoId}) => {
     const json = await data.json();
     setComments(json.items);
   }
+
+  if(comments===undefined || comments.length===0) return;
+  
   return (
     <div className=" lg:px-0 py-2 w-full">
         <h2 className="text-base lg:text-xl font-bold">Top Comments:</h2>

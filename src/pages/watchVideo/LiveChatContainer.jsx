@@ -42,7 +42,7 @@ const LiveChatContainer = ({setShowMobileLiveChat}) => {
         setLiveUsersChat("");
     }
   return (
-    <div className="w-full h-full lg:w-[20vw] border border-gray-200 rounded-lg shadow-md lg:h-[600px]  lg:mx-6 p-2  ">
+    <div className="w-full lg:w-[20vw] h-full border border-gray-200 rounded-lg shadow-md lg:h-[600px]  lg:mx-6 p-2  ">
         <div className="flex justify-between items-center px-2">
             <h2 className="my-1 h-[5%] font-medium ">Live chat:</h2>
             <span className="flex lg:hidden text-lg text-red-400 rounded-lg mb-2" onClick={() => {setShowMobileLiveChat(false)}}><FaWindowClose /></span>

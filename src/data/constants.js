@@ -11,6 +11,8 @@ export const FETCH_VIDEOS_DETAILS = `https://www.googleapis.com/youtube/v3/video
 
 export const FETCH_VIDEO_COMMENTS = `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,replies&maxResults=50&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&videoId=`
 
+// export const FETCH_RELATED_VIDEOS = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&type=video&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&relatedToVideoId=`
+
 export const FETCH_CHANNEL_DETAILS = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&id=`   
 
 export const FETCH_CHANNEL_ICON = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&id=`
@@ -18,3 +20,13 @@ export const FETCH_CHANNEL_ICON = `https://youtube.googleapis.com/youtube/v3/cha
 // export const FETCH_SUBSCRIPTIONS = `https://www.googleapis.com/youtube/v3/subscriptions?part=snippet&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&mySubscribers=false&channelId=`
 
 export const FETCH_SUBSCRIPTIONS = `https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.subscriptions.list?part=snippet,contentDetails&mine=true`
+
+
+export const FETCH_RELATED_VIDEOS = 'https://youtube-v2.p.rapidapi.com/video/recommendations?video_id=';
+export const FETCH_RELATED_VIDEOS_OPTIONS = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': 'd3a49925bbmshfab16c20f7d8626p190320jsn4241f59eb1a2',
+    'X-RapidAPI-Host': 'youtube-v2.p.rapidapi.com'
+  }
+};

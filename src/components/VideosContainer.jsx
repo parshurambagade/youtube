@@ -22,7 +22,7 @@ const VideosContainer = () => {
         const data = await fetch(category ? FETCH_POPULAR_VIDEOS_BY_CATEGORY_ID + category : YOUTUBE_VIDEOS_API);
         const json = await data.json();
         setVideosList(json.items);
-        console.log(json.items)
+        // console.log(json.items)
     } 
     
   return (
