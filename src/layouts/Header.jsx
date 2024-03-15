@@ -74,6 +74,7 @@ const Header = () => {
 
   const handleLoginClicked =  () => {
     const provider = new GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl');
     // console.log("login clicked");
     setShowLoginModal(false);
     signInWithPopup(auth, provider)
