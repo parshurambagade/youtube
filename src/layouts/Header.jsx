@@ -64,12 +64,16 @@ const Header = () => {
 
   
   const fetchSearchSuggestions = async () => {
-    //FIX CORS ERROR
-    const data = await fetch(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText);
+    try{
+    const data = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText)}`);
     const json = await data.json();
-    setSearchSuggestions(json[1]);
-    dispatch(cacheSuggestions({[searchText]: json[1]}));
-  }
+    console.log(JSON.parse(json.contents));
+    setSearchSuggestions(JSON.parse(json.contents)[1]);
+    dispatch(cacheSuggestions({ [searchText]: json[1] }));
+    }catch(err){
+      console.error(err);
+    }
+  };
 
 
   const handleLoginClicked =  () => {
@@ -146,7 +150,7 @@ const Header = () => {
             <span onClick={() => toggleMenuClicked()} className="cursor-pointer"><FiMenu /></span>
             <Link to='/' className="items-center font-bold gap-1 flex">
               <span className="text-3xl text-blue-500"><FaYoutube /></span>
-              <span className="hidden md:flex">VideoX</span>
+              <span className="hidden md:flex">VTube</span>
             </Link>
         </div>
 

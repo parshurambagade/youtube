@@ -55,10 +55,15 @@ const MobileHeader = () => {
   }, [searchText]);
 
   const fetchSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText);
+    try{
+    const data = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(YOUTUBE_SEARCH_AUTOCOMPLETE_API + searchText)}`);
     const json = await data.json();
-    setSearchSuggestions(json[1]);
+    console.log(JSON.parse(json.contents));
+    setSearchSuggestions(JSON.parse(json.contents)[1]);
     dispatch(cacheSuggestions({ [searchText]: json[1] }));
+    }catch(err){
+      console.error(err);
+    }
   };
 
   const toggleMenuClicked = () => {
@@ -145,7 +150,7 @@ const MobileHeader = () => {
        
        {showSuggestions && 
        <div className="mt-2 w-full  shadow-md ">
-            <ul className={!searchSuggestions.length ? "border-none bg-transparent" : "w-full px-2 py-2 border border-gray-200 bg-white "}>
+            <ul className={!searchSuggestions?.length ? "border-none bg-transparent" : "w-full px-2 py-2 border border-gray-200 bg-white "}>
                 {searchSuggestions && searchSuggestions.map((suggestion, i) => {
                 return (
                 <li onClick={() => handleSuggestionClick(suggestion)} key={i} className="border-b cursor-pointer border-gray-100 py-1 text-base flex  items-center  gap-4"><FiSearch /> {suggestion}</li>)})}
@@ -165,7 +170,7 @@ const MobileHeader = () => {
           <span className=" text-blue-500">
             <FaYoutube />
           </span>
-          <span className="text-2xl">VideoX</span>
+          <span className="text-2xl">VTube</span>
         </Link>
       </div>
 

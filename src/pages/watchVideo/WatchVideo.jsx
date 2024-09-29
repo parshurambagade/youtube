@@ -39,10 +39,10 @@ const WatchVideo = () => {
         const videoData = await fetch(FETCH_VIDEOS_DETAILS + videoId);
         const videoJson = await videoData.json();
         setVideo(videoJson?.items[0]);
-      console.log(relatedVideos)
+      // console.log(relatedVideos)
   
       }catch(err){
-        console.log(err);
+        console.error(err);
       }
       
     };
@@ -57,11 +57,11 @@ const WatchVideo = () => {
         FETCH_RELATED_VIDEOS.concat(videoId), FETCH_RELATED_VIDEOS_OPTIONS
       );
       const json = await data.json();
-      console.log(json.videos)
+      // console.log(json.videos)
       setRelatedVideos(json.videos);
       
       }catch(err){
-        console.log(err);
+        console.error(err);
       }
     }
 

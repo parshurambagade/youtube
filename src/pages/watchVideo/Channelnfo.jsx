@@ -17,7 +17,7 @@ const Channelnfo = ({channelId}) => {
         // console.log(json?.items[0]);
         json.items!==undefined && setChannelInfo(json.items[0]);
       }catch(err){
-        console.log(err);
+        console.error(err);
       }
        
     }

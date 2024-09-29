@@ -1,4 +1,4 @@
-# VideoX - Dynamic Video Discovery Platform
+# VTube - Dynamic Video Discovery Platform
 
 ![VideoX](./src/assets/videoX.gif)
 
@@ -6,7 +6,7 @@
 
 **VideoX**, a YouTube Clone that replicates the core features of the popular video-sharing platform. Below are the key details and features of the project:
 
-Live link: [https://videox1.netlify.app/](https://videox1.netlify.app/)  
+Live link: [https://vtube1.netlify.app/](https://vtube1.netlify.app/)  
 GitHub: [https://github.com/parshurambagade/youtube](https://github.com/parshurambagade/youtube)
 
 ## Technologies Used

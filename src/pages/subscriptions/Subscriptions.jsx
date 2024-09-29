@@ -15,10 +15,10 @@ const Subscriptions = () => {
     const getSubscriptions = async () => {
         try{
             const data = await fetch(FETCH_SUBSCRIPTIONS);
-            // const json = await data.json();
-            console.log(data);
+            const json = await data.json();
+            console.log(json);
         }catch(e){
-            console.log(e);
+            console.error(e);
         }
        
     }

@@ -10,7 +10,7 @@ const VideosContainer = () => {
   const category = searchParams.get("category");
   const [videosList, setVideosList] = useState([]);
   const showMenu = useSelector(state => state.menu.showMenu);
-  console.log(showMenu)
+  // console.log(showMenu)
 
     useEffect(() => {
         getVideos();
