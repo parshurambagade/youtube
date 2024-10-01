@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FETCH_VIDEOS_BY_KEYWORD } from "../../data/constants";
 import { Link, useSearchParams } from "react-router-dom";
 import VideoCard from './VideoCard';
@@ -14,16 +14,21 @@ const Results = () => {
   const q = searchParams.get("search");
   const showMobileMenu = useSelector(state => state.menu.showMobileMenu);
   const showMobileSearchbar = useSelector((state) => state.mobileSearchbar.showMobileSearchbar);
+  
   useEffect(() => {
-    getVideos();
+      q && getVideos();
     dispatch(hideMobileMenu()); 
-  }, [q]);
+  }, [q, dispatch, getVideos]);
 
-  const getVideos = async () => {
-    const data = await fetch(FETCH_VIDEOS_BY_KEYWORD + q);
+  const getVideos = useCallback(async () => {
+    try{
+      const data = await fetch(FETCH_VIDEOS_BY_KEYWORD + q);
     const json = await data.json();
     setResults(json.items);
-  };
+    }catch(err){
+      console.error(err);
+    }
+  },[q]);
 
   return (
     <div className={`${showMobileMenu && "hidden"} w-full md:px-2 flex md:gap-2 flex-col ${showMobileSearchbar ? "my-0" : "my-12 md:my-20"}   lg:my-16`}>

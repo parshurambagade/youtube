@@ -1,19 +1,10 @@
-import { FETCH_VIDEO_COMMENTS } from "../../data/constants";
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
 import Comment from './Comment';
+import useComments from "../../hooks/useComments";
 
 const CommentsContainer = ({videoId}) => {
-  const [comments, setComments] = useState([]);
   
-  useEffect(() => {
-    fetchComments();
-  }, [videoId]);
-
-  const fetchComments = async () => {
-    const data = await fetch(FETCH_VIDEO_COMMENTS + videoId);
-    const json = await data.json();
-    setComments(json.items);
-  }
+  const comments = useComments(videoId);
 
   if(comments===undefined || comments.length===0) return;
   

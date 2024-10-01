@@ -12,7 +12,6 @@ const ButtonsContainer = () => {
     { id: 10, name: 'Music' },
     { id: 15, name: 'Pets & Animals' },
     { id: 17, name: 'Sports' },
-    { id: 19, name: 'Travel & Events' },
     { id: 20, name: 'Gaming' },
     { id: 22, name: 'People & Blogs' },
     { id: 23, name: 'Comedy' },

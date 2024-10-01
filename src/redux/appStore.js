@@ -4,6 +4,7 @@ import liveChatSlice from "./liveChatSlice";
 import menuSlice from "./menuSlice";
 import mobileSearchbarSlice from "./mobileSearchbarSlice";
 import userSlice from "./userSlice";
+import videoSlice from "./videoSlice";
 
 const appStore = configureStore({
     reducer:{
@@ -11,7 +12,8 @@ const appStore = configureStore({
         search: searchSlice,
         liveChat: liveChatSlice,
         mobileSearchbar: mobileSearchbarSlice,
-        user: userSlice
+        user: userSlice,
+        videos: videoSlice
     }
 })
 

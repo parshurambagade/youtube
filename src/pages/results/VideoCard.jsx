@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { formatTimeAgo } from "../../utils/helpers";
 
 const VideoCard = ({ video }) => {

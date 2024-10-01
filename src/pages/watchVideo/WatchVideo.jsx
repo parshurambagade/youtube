@@ -11,18 +11,20 @@ import { LuDownload } from "react-icons/lu";
 import { RiPlayListAddFill } from "react-icons/ri";
 import VideoDescription from "./VideoDescription";
 import Channelnfo from "./Channelnfo";
-import { FETCH_RELATED_VIDEOS, FETCH_RELATED_VIDEOS_OPTIONS, FETCH_VIDEOS_DETAILS } from "../../data/constants";
 import { MdCircle } from "react-icons/md";
 import { hideMobileSearchbar } from "../../redux/mobileSearchbarSlice";
 import RelatedVideos from "./RelatedVideos";
+import useRelatedVideos from "../../hooks/useRelatedVideos";
+import useVideoDetails from "../../hooks/useVideoDetails";
 
-// TODO: display the relatedvideos container in small devices 
+// TODO: display the relatedvideos container in small devices
 
 const WatchVideo = () => {
-  const [video, setVideo] = useState({});
+
   const [showMobileLiveChat, setShowMobileLiveChat] = useState(false);
-  const [relatedVideos, setRelatedVideos] = useState([]);  
-  const showMobileSearchbar = useSelector(state => state.mobileSearchbar.showMobileSearchbar); 
+  const showMobileSearchbar = useSelector(
+    (state) => state.mobileSearchbar.showMobileSearchbar
+  );
   const dispatch = useDispatch();
   const showMenu = useSelector((state) => state.menu.showMenu);
   const [searchParams] = useSearchParams();
@@ -31,50 +33,17 @@ const WatchVideo = () => {
   useEffect(() => {
     dispatch(hideMenu());
     dispatch(hideMobileSearchbar());
-  }, []);
+  }, [dispatch]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try{
-        const videoData = await fetch(FETCH_VIDEOS_DETAILS + videoId);
-        const videoJson = await videoData.json();
-        setVideo(videoJson?.items[0]);
-      // console.log(relatedVideos)
-  
-      }catch(err){
-        console.error(err);
-      }
-      
-    };
-    fetchData();
-  }, [videoId]);
 
-  useEffect(() => {
-    
-    const fetchRelatedVideos = async () => {
-      try{
-      const data = await fetch(
-        FETCH_RELATED_VIDEOS.concat(videoId), FETCH_RELATED_VIDEOS_OPTIONS
-      );
-      const json = await data.json();
-      // console.log(json.videos)
-      setRelatedVideos(json.videos);
-      
-      }catch(err){
-        console.error(err);
-      }
-    }
+  const video = useVideoDetails(videoId);
+  const relatedVideos = useRelatedVideos(videoId);
 
-    fetchRelatedVideos();
-
-  },[videoId])
-  
-  
-
-  
   return (
     <div
-      className={`flex w-full mb-0  lg:w-[85%] lg:ml-12 overflow-hidden justify-center ${showMobileSearchbar ? "my-0 md:my-0" : "my-12 md:my-16"} `}
+      className={`flex w-full mb-0  lg:w-[85%] lg:ml-12 overflow-hidden justify-center ${
+        showMobileSearchbar ? "my-0 md:my-0" : "my-12 md:my-16"
+      } `}
     >
       <div
         className={`w-full  flex flex-col lg:flex-row ${
@@ -97,7 +66,11 @@ const WatchVideo = () => {
           ></iframe>
 
           {/* live chat in mobile view*/}
-          <div className={`flex flex-col md:w-full ${showMobileLiveChat ? "h-[58vh] md:h-[52vh]" : "h-0"} mb-2 lg:hidden`}>
+          <div
+            className={`flex flex-col md:w-full ${
+              showMobileLiveChat ? "h-[58vh] md:h-[52vh]" : "h-0"
+            } mb-2 lg:hidden`}
+          >
             {showMobileLiveChat && (
               <LiveChatContainer
                 setShowMobileLiveChat={setShowMobileLiveChat}
@@ -106,7 +79,9 @@ const WatchVideo = () => {
           </div>
           {/* video info */}
           <div
-            className={`p-2 pt-0 w-full md:p-4 ${showMobileLiveChat && "hidden"}`}
+            className={`p-2 pt-0 w-full md:p-4 ${
+              showMobileLiveChat && "hidden"
+            }`}
           >
             <span className="font-bold text-lg md:text-[1.3rem]">
               {video?.snippet?.title}
@@ -169,7 +144,9 @@ const WatchVideo = () => {
                     setShowMobileLiveChat(true);
                   }}
                 >
-                  <span className="text-red-600"><MdCircle /></span> 
+                  <span className="text-red-600">
+                    <MdCircle />
+                  </span>
                   <span>Live chat</span>
                 </span>
               </div>
