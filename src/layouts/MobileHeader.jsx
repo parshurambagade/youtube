@@ -2,7 +2,7 @@ import { FiMenu, FiSearch } from "react-icons/fi";
 import { FaMicrophone, FaYoutube } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMobileMenu } from "../redux/menuSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoClose, IoArrowBack } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { toggleMobileSearchbar } from "../redux/mobileSearchbarSlice";
@@ -41,6 +41,43 @@ const MobileHeader = () => {
 
   useSearchSuggestions(searchText, setSearchSuggestions);
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log("User is logged in:", user.email);
+
+        // Extract only serializable fields from the user object
+        const serializedUser = {
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+          uid: user.uid,
+        };
+
+        // Get token from user or localStorage
+        const token = user.accessToken || localStorage.getItem("token");
+
+        // Dispatch serializable user data and token to Redux
+        dispatch(login(serializedUser)); // Dispatch only serializable data
+        dispatch(setToken(token));
+
+        // Save to localStorage for persistence
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(serializedUser)); // Only serializable data
+      } else {
+        console.log("User is not logged in");
+
+        // Clear Redux state and localStorage
+        dispatch(logout());
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
+    });
+
+    // Clean up the subscription when component unmounts
+    return () => unsubscribe();
+  }, [auth, dispatch]);
+
   const toggleMenuClicked = () => {
     dispatch(toggleMobileMenu());
   };
@@ -64,8 +101,8 @@ const MobileHeader = () => {
   const handleLoginClicked = () => {
     const provider = new GoogleAuthProvider();
     provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
+    // console.log("login clicked");
     setShowLoginModal(false);
-
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -74,12 +111,23 @@ const MobileHeader = () => {
         const token = credential.accessToken;
 
         const user = result.user;
-        // console.log(user);
+
         if (userState) {
           return;
         } else {
-          dispatch(setToken(token));
-          dispatch(login(user));
+          // Only save serializable data
+          const serializedUser = {
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            uid: user.uid,
+          };
+
+          dispatch(setToken(token)); // Save token if needed
+          dispatch(login(serializedUser)); // Save serializable user data
+
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(serializedUser));
         }
       })
       .catch((error) => {
