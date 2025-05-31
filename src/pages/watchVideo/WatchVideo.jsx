@@ -40,7 +40,7 @@ const WatchVideo = () => {
   const relatedVideos = useRelatedVideos(videoId);
 
   return (
-    <div
+    <main aria-labelledby="videoTitle"
       className={`flex w-full mb-0  lg:w-[85%] lg:ml-12 overflow-hidden justify-center ${
         showMobileSearchbar ? "my-0 md:my-0" : "my-12 md:my-16"
       } `}
@@ -66,7 +66,7 @@ const WatchVideo = () => {
           ></iframe>
 
           {/* live chat in mobile view*/}
-          <div
+          <section aria-label="(Mobile) Live chat"
             className={`flex flex-col md:w-full ${
               showMobileLiveChat ? "h-[58vh] md:h-[52vh]" : "h-0"
             } mb-2 lg:hidden`}
@@ -76,14 +76,14 @@ const WatchVideo = () => {
                 setShowMobileLiveChat={setShowMobileLiveChat}
               />
             )}
-          </div>
+          </section>
           {/* video info */}
-          <div
+          <section aria-label="Video info"
             className={`p-2 pt-0 w-full md:p-4 ${
               showMobileLiveChat && "hidden"
             }`}
           >
-            <span className="font-bold text-lg md:text-[1.3rem]">
+            <span id="videoTitle" className="font-bold text-lg md:text-[1.3rem]">
               {video?.snippet?.title}
             </span>
 
@@ -128,10 +128,11 @@ const WatchVideo = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
           {/* description */}
-          <div
+          <section
+            aria-label="Video description"
             className={` px-1 md:px-4 w-full ${showMobileLiveChat && "hidden"}`}
           >
             <div className=" text-wrap whitespace-pre-line w-full   lg:w-full px-4 py-2 pb-4 border-gray-300 bg-gray-100 md:my-2 md:mt-0  overflow-x-auto rounded-lg">
@@ -154,15 +155,15 @@ const WatchVideo = () => {
                 <VideoDescription description={video?.snippet?.description} />
               )}
             </div>
-          </div>
+          </section>
           {/* comments*/}
-          <div
+          <section aria-label="Comments"
             className={`px-2 md:px-4 w-full lg:w-full ${
               showMobileLiveChat && "hidden"
             }`}
           >
             {videoId && <CommentsContainer videoId={videoId} />}
-          </div>
+          </section>
         </div>
 
         <div className="hidden lg:flex lg:flex-col lg:items-center">
@@ -170,7 +171,7 @@ const WatchVideo = () => {
           <RelatedVideos relatedVideos={relatedVideos} />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

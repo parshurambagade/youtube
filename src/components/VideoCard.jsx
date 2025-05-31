@@ -11,7 +11,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <div className="shadow-sm  border-slate-200  flex flex-col w-full rounded-lg ">
-      <img src={thumbnails?.medium?.url} className="rounded-t-lg" alt="" />
+      <img src={thumbnails?.medium?.url} className="rounded-t-lg" alt={title} />
       <div className="flex gap-2 lg:gap-3 justify-normal md:mt-1 w-full p-2 pb-4">
         <img
           src={channelIcon && channelIcon}

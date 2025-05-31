@@ -13,11 +13,11 @@ const VideosContainer = () => {
   const {videosList} = useSelector(state => state.videos);
 
   return (
-      <div className={`w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-1 lg:gap-2 justify-between `}>
+      <section aria-label="Videos list" className={`w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-1 lg:gap-2 justify-between `}>
         {videosList && videosList.map(video => (
         <Link key={video.id} to={"/watch?v=" + video.id}><VideoCard  video={video} /></Link>
         ))}
-      </div>
+      </section>
   )
 }
 

@@ -169,7 +169,7 @@ const Header = () => {
   };
 
   return (
-    <div className=" w-[100vw] box-border  h-[6vh] fixed bg-white lg:flex px-2 py-2 md:px-4 lg:px-8 lg:py-8 border-b justify-between text-2xl items-center">
+    <nav className=" w-[100vw] box-border  h-[6vh] fixed bg-white lg:flex px-2 py-2 md:px-4 lg:px-8 lg:py-8 border-b justify-between text-2xl items-center">
       <div className="flex w-[10%] md:w-[15%] lg:w-max items-center gap-3 lg:gap-5">
         <span onClick={() => toggleMenuClicked()} className="cursor-pointer">
           <FiMenu />
@@ -178,7 +178,7 @@ const Header = () => {
           <span className="text-3xl text-blue-500">
             <FaYoutube />
           </span>
-          <span className="hidden md:flex">VTube</span>
+          <h1 className="hidden md:flex">VTube</h1>
         </Link>
       </div>
 
@@ -205,7 +205,7 @@ const Header = () => {
               <IoClose />
             </span>
           )}
-          <button className="border bg-gray-200 border-slate-300 rounded-r-full px-4  text-lg">
+          <button aria-label="search" className="border bg-gray-200 border-slate-300 rounded-r-full px-4  text-lg">
             <FiSearch />
           </button>
         </form>
@@ -254,7 +254,7 @@ const Header = () => {
             </div>
           ) : (
             <button
-              className="text-sm bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 lg:py-2 px-2 lg:px-4 rounded"
+              className="text-sm bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 lg:py-2 px-2 lg:px-4 rounded"
               onClick={openLoginModal}
             >
               Login
@@ -330,7 +330,7 @@ const Header = () => {
           )}
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
