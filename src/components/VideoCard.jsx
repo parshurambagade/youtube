@@ -10,7 +10,7 @@ const VideoCard = ({ video }) => {
   const channelIcon = useChannelIcon(channelId);
 
   return (
-    <div className=" shadow-lg border border-slate-200  flex flex-col w-full rounded-lg ">
+    <div className="shadow-sm  border-slate-200  flex flex-col w-full rounded-lg ">
       <img src={thumbnails?.medium?.url} className="rounded-t-lg" alt="" />
       <div className="flex gap-2 lg:gap-3 justify-normal md:mt-1 w-full p-2 pb-4">
         <img
@@ -19,14 +19,14 @@ const VideoCard = ({ video }) => {
           className="w-10 h-10 aspect-square rounded-full"
         />
 
-        <div className="text-gray-500 flex  flex-col gap-0 md:gap-1">
+        <div className="text-gray-500 flex  flex-col gap-0 md:gap-1/2">
           <h3 className="font-medium text-black text-wrap">
             {title.length > 65 ? title.slice(0, 65) + "..." : title}
           </h3>
-          <p>{channelTitle}</p>
+          <p className="text-sm">{channelTitle}</p>
           <span className="flex gap-2">
-            <p>{formatCount(viewCount)} views</p>
-            <p className="border-l px-2">{formatTimeAgo(publishedAt)}</p>
+            <p className="text-sm">{formatCount(viewCount)} views</p>
+            <p className="border-l px-2 text-sm">{formatTimeAgo(publishedAt)}</p>
           </span>
         </div>
       </div>
