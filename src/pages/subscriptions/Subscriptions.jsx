@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 const Subscriptions = () => {
     const accessToken = useSelector(state => state.user.token);
-    console.log(accessToken)
     useEffect(() => {
         
         if(accessToken){
@@ -16,6 +15,7 @@ const Subscriptions = () => {
         try{
             const data = await fetch(FETCH_SUBSCRIPTIONS);
             const json = await data.json();
+            // TODO: Fix the issue, we are not doing anything with this data
             console.log(json);
         }catch(e){
             console.error(e);

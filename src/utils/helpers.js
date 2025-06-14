@@ -25,10 +25,6 @@ export const generateName = () => {
 };
 
 
-
-
-// console.log(generateName(5));
-
 export const randomLiveChat = () => {
   // const users = ["User123", "JohnDoe", "Alice", "Bob"];
   const greetings = ["Hi", "Hello", "Hey"];

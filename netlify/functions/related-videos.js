@@ -1,21 +1,29 @@
+const { 
+  securityMiddleware, 
+  createErrorResponse, 
+  createSuccessResponse, 
+  validateRequiredParam,
+  VALIDATORS 
+} = require('./shared/security');
+
 exports.handler = async (event, context) => {
+  // Apply security middleware
+  const securityResult = await securityMiddleware(event, context, 'related-videos');
+  if (securityResult) return securityResult;
+
   const { video_id } = event.queryStringParameters || {};
   
-  if (!video_id) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Video ID parameter "video_id" is required' })
-    };
+  // Validate video ID
+  const validation = validateRequiredParam({ video_id }, 'video_id', VALIDATORS.youtubeVideoId);
+  if (!validation.valid) {
+    return createErrorResponse(400, validation.error);
   }
   
   try {
     const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
     
     if (!RAPIDAPI_KEY) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'RapidAPI key not configured' })
-      };
+      return createErrorResponse(500, 'RapidAPI key not configured');
     }
 
     const url = `https://youtube-v2.p.rapidapi.com/video/recommendations?video_id=${video_id}`;
@@ -30,19 +38,8 @@ exports.handler = async (event, context) => {
     
     const data = await response.json();
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-      },
-      body: JSON.stringify(data)
-    };
+    return createSuccessResponse(data, 600); // Cache for 10 minutes
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch related videos' })
-    };
+    return createErrorResponse(500, 'Failed to fetch related videos');
   }
 };

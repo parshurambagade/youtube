@@ -1,21 +1,29 @@
+const { 
+  securityMiddleware, 
+  createErrorResponse, 
+  createSuccessResponse, 
+  validateRequiredParam,
+  VALIDATORS 
+} = require('./shared/security');
+
 exports.handler = async (event, context) => {
+  // Apply security middleware
+  const securityResult = await securityMiddleware(event, context, 'channel-details');
+  if (securityResult) return securityResult;
+
   const { id } = event.queryStringParameters || {};
   
-  if (!id) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Channel ID parameter "id" is required' })
-    };
+  // Validate channel ID
+  const validation = validateRequiredParam({ id }, 'id', VALIDATORS.youtubeChannelId);
+  if (!validation.valid) {
+    return createErrorResponse(400, validation.error);
   }
   
   try {
     const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
     
     if (!YOUTUBE_API_KEY) {
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'YouTube API key not configured' })
-      };
+      return createErrorResponse(500, 'YouTube API key not configured');
     }
 
     const url = `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&key=${YOUTUBE_API_KEY}&id=${id}`;
@@ -23,19 +31,8 @@ exports.handler = async (event, context) => {
     const response = await fetch(url);
     const data = await response.json();
 
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
-      },
-      body: JSON.stringify(data)
-    };
+    return createSuccessResponse(data, 300); // Cache for 5 minutes
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to fetch channel icon' })
-    };
+    return createErrorResponse(500, 'Failed to fetch channel details');
   }
 };

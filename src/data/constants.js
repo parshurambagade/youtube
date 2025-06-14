@@ -19,11 +19,3 @@ export const FETCH_SUBSCRIPTIONS = `https://developers.google.com/apis-explorer/
 
 
 export const FETCH_RELATED_VIDEOS = 'https://youtube-v2.p.rapidapi.com/video/recommendations?video_id=';
-
-export const FETCH_RELATED_VIDEOS_OPTIONS = {
-  method: 'GET',
-  headers: {
-    'X-RapidAPI-Key': 'd3a49925bbmshfab16c20f7d8626p190320jsn4241f59eb1a2',
-    'X-RapidAPI-Host': 'youtube-v2.p.rapidapi.com'
-  }
-};

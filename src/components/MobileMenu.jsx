@@ -14,7 +14,6 @@ const MobileMenu = () => {
   // const showMenu = useSelector((state) => state.menu.showMenu);
   const showMobileMenu = useSelector(state => state.menu.showMobileMenu);
   // const showMobileSearchbar = useSelector(state => state.mobileSearchbar.showMobileSearchbar);
-  // console.log(showMobileSearchbar)
     const dispatch = useDispatch();
 
     // TODO: Remove text in the mobile menu, keep only icons;

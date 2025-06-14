@@ -8,7 +8,6 @@ const useChannelInfo = (channelId) => {
         try{
           const data = await fetch(FETCH_CHANNEL_DETAILS + channelId);
           const json = await data.json();
-          // console.log(json?.items[0]);
           json.items!==undefined && setChannelInfo(json.items[0]);
         }catch(err){
           console.error(err);

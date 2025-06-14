@@ -16,7 +16,6 @@ const useVideos = (category) => {
           ? FETCH_POPULAR_VIDEOS_BY_CATEGORY_ID + category
           : YOUTUBE_VIDEOS_API
       );
-      console.log("Videos Data: ", data);
       const json = await data.json();
       dispatch(addVideos(json.items));
     } catch (err) {

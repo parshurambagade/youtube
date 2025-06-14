@@ -38,8 +38,6 @@ const Header = () => {
 
   const navigate = useNavigate();
 
-  // console.log(cachedSuggestions);
-
   const auth = getAuth(app);
 
   useSearchSuggestions(searchText, setSearchSuggestions);
@@ -47,7 +45,6 @@ const Header = () => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log("User is logged in:", user.email);
 
         // Extract only serializable fields from the user object
         const serializedUser = {
@@ -68,7 +65,6 @@ const Header = () => {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(serializedUser)); // Only serializable data
       } else {
-        console.log("User is not logged in");
 
         // Clear Redux state and localStorage
         dispatch(logout());
@@ -95,12 +91,10 @@ const Header = () => {
   const handleLoginClicked = () => {
     const provider = new GoogleAuthProvider();
     provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
-    // console.log("login clicked");
     setShowLoginModal(false);
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        // console.log(credential);
 
         const token = credential.accessToken;
 
@@ -127,14 +121,12 @@ const Header = () => {
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
-        // console.log(errorCode);
         const errorMessage = error.message;
-        // console.log(errorMessage);
         // The email of the user's account used.
         // const email = error.customData.email;
         // The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log(
+        console.Error(
           `Credential: ${credential}, Error: ${error}, Code: ${errorCode}, Message: ${errorMessage}`
         );
         // ...
