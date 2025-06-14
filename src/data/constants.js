@@ -18,4 +18,4 @@ export const FETCH_CHANNEL_ICON = `/.netlify/functions/channel-details?id=`
 export const FETCH_SUBSCRIPTIONS = `https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.subscriptions.list?part=snippet,contentDetails&mine=true`
 
 
-export const FETCH_RELATED_VIDEOS = 'https://youtube-v2.p.rapidapi.com/video/recommendations?video_id=';
+export const FETCH_RELATED_VIDEOS = '/.netlify/functions/related-videos?video_id=';
