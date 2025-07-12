@@ -4,7 +4,7 @@ const {
   createSuccessResponse,
   validateRequiredParam,
   VALIDATORS,
-} = require("./shared/security");
+} = require("./shared/security.cjs");
 
 exports.handler = async (event, context) => {
   // Apply security middleware
