@@ -20,13 +20,13 @@ const VideoCard = ({ video }) => {
         />
 
         <div className="text-gray-500 flex  flex-col gap-0 md:gap-1/2">
-          <h3 className="font-medium text-black text-wrap">
-            {title.length > 65 ? title.slice(0, 65) + "..." : title}
-          </h3>
-          <p className="text-sm">{channelTitle}</p>
+          <h3 className="font-medium text-black line-clamp-2">{title}</h3>
+          <p className="text-sm line-clamp-1">{channelTitle}</p>
           <span className="flex gap-2">
             <p className="text-sm">{formatCount(viewCount)} views</p>
-            <p className="border-l px-2 text-sm">{formatTimeAgo(publishedAt)}</p>
+            <p className="border-l px-2 text-sm">
+              {formatTimeAgo(publishedAt)}
+            </p>
           </span>
         </div>
       </div>
